@@ -70,7 +70,7 @@ export const HomeStyle = styled.div`
     }
     .services {
         width: 100%;
-        padding: 40px 0;
+        padding-bottom:40px;
     }
     .services-content {
         width: 100%;
@@ -82,6 +82,7 @@ export const HomeStyle = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 40px 0;
         &::before{
             content: '';
             width: 43%;
@@ -160,8 +161,17 @@ export const HomeStyle = styled.div`
     }
     .clients{
         background: #fddeb6;
-        padding: 40px 0;
-        .services-title{
+        .clients-content {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .clients-title{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 0;
             &::before{
             content: '';
             width: 43%;
@@ -180,6 +190,15 @@ export const HomeStyle = styled.div`
                 display: flex;
                 position: absolute;
                 right: 1%;
+            }
+            h1 {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 45px;
+                line-height: 32px;
+                letter-spacing: 0.5px;
+                color: #4D566F;
             }
         }
     }
@@ -211,7 +230,7 @@ export const Button = styled.div`
         box-sizing: border-box;
         align-items: center;
         justify-content: center;
-        background:#fff ;
+        background:transparent ;
         cursor: pointer;
         transition: all ease-in 0.1s;
         &:hover{

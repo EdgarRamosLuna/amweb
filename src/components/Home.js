@@ -94,8 +94,8 @@ export default function Home(){
                 </div>
             </div>
             <div className="clients" ref={cli}>
-                <div className="services-content" >
-                        <div className="services-title">
+                <div className="clients-content" >
+                        <div className="clients-title">
                             <h1>Clientes</h1>
                         </div>
                     <div className="clients-slider">
