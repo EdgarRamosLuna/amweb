@@ -130,8 +130,45 @@ export const HomeStyle = styled.div`
         margin: auto;
         position: relative;
         align-items: center;
+        border-radius: 100%;
+        cursor: pointer;
         img {
             width: 100%;
+            border-radius: 100%;
+        }
+        .animationbg {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                border-radius: 100%;
+                background: #000;
+                z-index: 1;
+                opacity: 0;
+                transition: all ease-in 0.3s;
+                &:hover{
+                    opacity: 0.3;
+                    transition: all ease-in 0.3s;
+                }
+        }
+        &:hover{
+            
+          /*  &:before{
+            
+                    content:'';
+                    width: 100%;
+                    position: absolute;
+                    background: black;
+                    height: 100%;
+                    opacity: 0.4;
+                    top: 0;
+                    z-index: 0;
+                    border-radius: 100%;
+                
+                
+            }*/
+        }
+        &:after{
+            content:'';
         }
     }
     .services-item-title {
@@ -141,7 +178,7 @@ export const HomeStyle = styled.div`
         position: absolute;
         justify-content: center;
         color: #fff;
-        background: #0000006e;
+        background: #ff60008f;
         font-family: 'Open Sans';
         font-style: normal;
         font-weight: 400;
@@ -149,6 +186,7 @@ export const HomeStyle = styled.div`
         line-height: 32px;
         letter-spacing: 8.5px;
         text-transform: uppercase;
+        z-index:2;
     }
     .services-item-txt {
         width: 90%;

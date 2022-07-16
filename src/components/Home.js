@@ -74,10 +74,12 @@ export default function Home(){
                                 <div className="services-item-title">
                                     <h3>Social</h3>
                                 </div>
+                                <div className="animationbg"></div>
                             </div>
                             <div className="services-item-txt">
                                 <p>Occaecat adipisicing mollit deserunt amet cillum eiusmod aliqua quis. Eiusmod cupidatat ullamco do irure. In id nulla dolor duis ex cillum exercitation eu enim consectetur. Nulla voluptate incididunt qui proident sit deserunt in fugiat. </p>
                             </div>
+                           
                         </div>
                         <div className="services-item" >
                             <div className="services-item-img">
@@ -85,6 +87,7 @@ export default function Home(){
                                 <div className="services-item-title">
                                     <h3>Comercial</h3>
                                 </div>
+                                <div className="animationbg"></div>
                             </div>
                             <div className="services-item-txt">
                                 <p>Occaecat adipisicing mollit deserunt amet cillum eiusmod aliqua quis. Eiusmod cupidatat ullamco do irure. In id nulla dolor duis ex cillum exercitation eu enim consectetur. Nulla voluptate incididunt qui proident sit deserunt in fugiat. </p>
