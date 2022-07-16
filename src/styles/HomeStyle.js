@@ -70,6 +70,7 @@ export const HomeStyle = styled.div`
     }
     .services {
         width: 100%;
+        padding: 40px 0;
     }
     .services-content {
         width: 100%;
@@ -85,7 +86,7 @@ export const HomeStyle = styled.div`
             content: '';
             width: 43%;
             height: 1px;
-            background-color: #000;
+            background-color: #4d566f;
             display: flex;
             position: absolute;
             left: 1%;
@@ -95,7 +96,7 @@ export const HomeStyle = styled.div`
             content: '';
             width: 43%;
             height: 1px;
-            background-color: #000;
+            background-color: #4d566f;
             display: flex;
             position: absolute;
             right: 1%;
@@ -157,7 +158,40 @@ export const HomeStyle = styled.div`
             margin: 0;
         }
     }
-    
+    .clients{
+        background: #fddeb6;
+        padding: 40px 0;
+        .services-title{
+            &::before{
+            content: '';
+            width: 43%;
+            height: 1px;
+            background-color: #4d566f;
+            display: flex;
+            position: absolute;
+            left: 1%;
+
+            }
+            &::after{
+                content: '';
+                width: 43%;
+                height: 1px;
+                background-color: #4d566f;
+                display: flex;
+                position: absolute;
+                right: 1%;
+            }
+        }
+    }
+    .clients-slider{
+        
+        height: 25vh;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 0 5%;
+        box-sizing: border-box;
+    }
 `;
 export const Button = styled.div`
    position: fixed; 
