@@ -144,6 +144,7 @@ export const HomeStyle = styled.div`
                 background: #000;
                 z-index: 1;
                 opacity: 0;
+                transition: all ease-in 0.3s;
               
         }
         &:hover{
