@@ -21,7 +21,7 @@ export default function Home(){
                     <div className="menu-items">
                         <ul>
                             <li><a href="#" onClick={handleClick}>Servicios</a></li>
-                            <li><a href="#">Clientes</a></li>
+                            <li><a href="#">Clientesssss</a></li>
                             <li><a href="#">Team</a></li>
                             <li><a href="#">Cotizaciones</a></li>
                         </ul>
