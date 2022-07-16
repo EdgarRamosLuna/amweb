@@ -59,6 +59,13 @@ export default function Home(){
                     </div>
                 </div>
             </div>
+            <div className="clients">
+                <div className="services-content" >
+                        <div className="services-title">
+                            <h1>Servicios</h1>
+                        </div>
+                </div>
+            </div>
             <ScrollButton />
         </HomeStyle>
     )
