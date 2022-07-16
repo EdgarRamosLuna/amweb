@@ -8,6 +8,7 @@ export const HomeStyle = styled.div`
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center top;
+        background-attachment:fixed;
     }
     .menu {
         display: flex;
@@ -28,7 +29,7 @@ export const HomeStyle = styled.div`
         box-sizing: border-box;
         position: relative;
         left: 10px;
-        background: #000;
+        background: transparent;
         z-index: 2;
         a {
             text-decoration: none;
