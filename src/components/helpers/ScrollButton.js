@@ -31,7 +31,7 @@ const ScrollButton = () =>{
     <Button>
      <div className="btnScroll" onClick={scrollToTop} 
      style={{display: visible ? 'flex' : 'none'}}>
-      <i class="fa-solid fa-camera"></i>
+      <i className="fa-solid fa-camera"></i>
      </div>
     </Button>
   );

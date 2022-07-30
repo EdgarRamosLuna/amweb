@@ -3,6 +3,9 @@
   height:100%;
   
 }
+#root{
+  height:100%;
+}
 body{
   overflow-x: hidden;
 }
@@ -39,4 +42,20 @@ body{
   to {
     transform: rotate(360deg);
   }
+}
+
+.cloudinary-button{
+  border:0 !important;
+  
+}
+.cloudinary-button:hover{
+  box-shadow: unset !important;
+  
+}
+html,body{
+  height: 100%;
+}
+.input-group > .form-control, .input-group > .form-select, .input-group > .form-floating{
+  outline: none !important;
+  box-shadow: none !important;
 }
