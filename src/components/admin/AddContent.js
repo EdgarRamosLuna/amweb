@@ -24,7 +24,7 @@ export default function AddContent(props){
     };
     const [dataCats, setDataCats] = useState([]);
     useEffect(() => {
-        axios.get('/api/category/getdata').then(res =>{
+        axios.get('https://amfotografia.herokuapp.com/api/category/getdata').then(res =>{
             console.log(res.data);
             setDataCats(res.data);
         }).catch(err =>{
@@ -88,13 +88,13 @@ export default function AddContent(props){
             desc:desc,
         }
         setIdcont(content.idcont);
-        axios.post('/api/content/add', content)
+        axios.post('https://amfotografia.herokuapp.com/api/content/add', content)
         .then(res => {
             alert(res.data);
             for (let i = 0; i < imgCont.length; i++) {
                 imgCont[i].idcont = content.idcont;
             }
-            axios.post('/api/photos/add', imgCont)
+            axios.post('https://amfotografia.herokuapp.com/api/photos/add', imgCont)
             .then(res => {
                 alert(res.data);
                 

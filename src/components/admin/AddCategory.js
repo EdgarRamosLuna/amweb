@@ -34,7 +34,7 @@ export default function AddCategory(props){
                         service:servicio,
                         desc:desc,
                     }
-                    axios.post('/api/category/add', categoria)
+                    axios.post('https://amfotografia.herokuapp.com/api/category/add', categoria)
                     .then(res => {
                         alert(res.data);
                         hideModal();
