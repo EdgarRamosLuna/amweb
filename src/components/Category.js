@@ -1,7 +1,8 @@
 import React,{useState, useEffect} from 'react';
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, redirect } from 'react-router-dom'
 import { useLocation } from "react-router-dom";
 import axios from 'axios';
+import { BtnBack, ContentS, ItemContainer, PortadaBg } from '../styles/HomeStyle';
 export default function Category(){
     const params = useParams();
     const location = useLocation()
@@ -10,30 +11,63 @@ export default function Category(){
     const catId = hash.replaceAll('#', '');
     
     const [datacat, setDatacat] = useState([]);
-    const [name , setName] = useState();
-    const [service, setService] = useState();
-    const [imgBg, setImgBg] = useState();
-
+    const [datapho, setDatapho] = useState([]);
+    const [datapor, setDatapor] = useState([]);
+    
+    const noId = (id) =>{
+        if(id === '' || id.length == 0){
+            window.location.href = "/comercial";
+            return false;
+        }
+    }
+    noId(catId);
     useEffect(() => {
         axios.post('/api/content/getcontbycat', {idcat:catId}).then(res =>{
-            const categoryData = res.data;
-            setDatacat(res.data)
-            console.log(categoryData);
+            noId(res.data);
+            let categoryDataMain = res.data;
+            console.log(categoryDataMain);
+            axios.post('/api/category/getportadabycat', {idcat:catId}).then(res =>{
+                setDatapor(res.data[0].bgimage);
+            });
+            //const idCont = res.data[0].idcont;
+            //console.log(idCont);
+            for (let i = 0; i < categoryDataMain.length; i++) {
+                const idCont = categoryDataMain[i].idcont;
+                axios.post('/api/photos/getphotosbyalbum', {idcont:idCont}).then(res =>{
+                    const categoryData = res.data[0];
+                    
+                    setDatapho(categoryData);
+                    if(categoryData.idcont === idCont){
+                        const imgPortada = categoryData.img;
+                        categoryDataMain[i]['portada'] = imgPortada;
+                       // console.log(categoryDataMain);
+                    }
+                }).catch(err =>{
+                    console.log(err);
+                });
+            }
+            setDatacat(categoryDataMain);
         }).catch(err =>{
             console.log(err);
         });
+        
+        
+          
       }, []);
 
-    const listacat = datacat.map(category =>{
-        
+    const listacont = datacat.map(category =>{
+        let name = category.name.replaceAll(' ', '-').toLowerCase();
+        if(name.includes("+")){
+            name = category.name.replaceAll('-', '').toLowerCase();
+        }
         return(
                 <div key={category.idcont} className="item-container">
                     
-                    <Link to={{pathname: `/comercial/${category.name}`, hash: category.idcont}}>
-                        <div className="cat-item">
-                            <div className="catBg">
-                                <img src={category.bgimage} alt="" />
-                                <div className="catLabel">
+                    <Link to={{pathname: `/${name}/`, hash:category.idcont}}>
+                        <div className="item">
+                            <div className="bg">
+                                <img src={category.portada} alt="" />
+                                <div className="label">
                                     <h1>{category.name.replaceAll('-', ' ')}</h1>
                                     <p>{category.desc}</p>
                                 </div>
@@ -43,14 +77,29 @@ export default function Category(){
                 </div>
             )
     });
-    const bgI = "assets/img/bgComercial.jpg";
+    const img = new Image();
+    const [imgw, setImgw] = useState();
+    const [imgh, setImgh] = useState();
+    img.addEventListener("load", () => {
+            //console.log(, img.naturalHeight);
+            setImgw(img.naturalWidth);
+            setImgh(img.naturalHeight);
+     });
+    const bgI = datapor;
+    img.src = datapor;
+    const title = params.name.replaceAll('-', ' ');
     return(
-
         <>
-        <Link to="/comercial/">Comercial</Link>
-        <h1>{params.name.replaceAll('-', ' ')}</h1>
-            {listacat}
+            <ItemContainer>
+            <BtnBack><Link  to={{pathname: "/comercial"}} className="btnBack"><i className="fa-solid fa-arrow-left"></i></Link ></BtnBack>
+            <PortadaBg bg={bgI} title={title} h={imgh} w={imgw}></PortadaBg>
+        
+            <div className="items-container">
+                {listacont}
+            </div>        
+            </ItemContainer>
         </>
+       
     )
     
 }

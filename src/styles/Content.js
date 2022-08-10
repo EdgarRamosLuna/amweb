@@ -58,6 +58,7 @@ export const ContentS = styled.div`
         display: flex;
         flex-direction: column;
         width: 100%;
+        padding-bottom: 50px;
     }
     .cat-form-input {
         display: flex;
@@ -185,10 +186,15 @@ export const ContentS = styled.div`
         i {
             font-size: 2em;
             color: #fff;
-            border: 1px solid #5cff00;
+            border: none;
             border-radius: 100%;
             background: #000;
         }
+    }
+    .isPortada {
+        transition:all ease-out 0.2s;
+        background: #5cff00 !important;
+        color: #fff !important;
     }
 `;
 export const Button = styled.button`

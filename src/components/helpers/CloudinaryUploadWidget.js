@@ -6,13 +6,14 @@ export default function CloudinaryUploadWidget(props){
           cloudName: "loboelegante",
           uploadPreset: "dwkjkvku",
           folder:"test",
-          sources: [ "local", "instagram", "google_drive"],
+          sources: [ "local"],
           show_powered_by:false,
+          quality:60
         },
         (error, result) => {
           if (!error && result && result.event === "success") {
             getImg(result.info.secure_url);
-        //    console.log(result.info.secure_url);
+           // console.log(result.info.secure_url);
           }
         }
       );
@@ -21,7 +22,7 @@ export default function CloudinaryUploadWidget(props){
     }
     return (
         <button id="upload_widget" className="cloudinary-button" onClick={openW} >
-          Seleccionar Imagenes
+          Seleccionar Imagenes Desde Este Dispositivo
         </button>
       );
 }

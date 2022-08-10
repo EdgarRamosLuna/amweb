@@ -8,7 +8,7 @@ export const HomeStyle = styled.div`
                                 'embedded-opentype', and 'svg' */
     }
     header{
-        background-image:url('assets/img/bg.jpg') ;
+        background-image:url('/assets/img/bg.jpg') ;
         height: 75vh;
         background-size: cover;
         background-repeat: no-repeat;
@@ -117,15 +117,7 @@ export const HomeStyle = styled.div`
             position: absolute;
             right: 1%;
         }
-        h1 {
-            font-family: 'AM';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 45px;
-            line-height: 32px;
-            letter-spacing: 0.5px;
-            color: #000;
-        }
+        
     }
     .services-items {
         width: 100%;
@@ -302,48 +294,68 @@ export const HomeStyle = styled.div`
         height: 340px;
         width: 340px;
         cursor: pointer;
+        position: relative;
+        transition:all ease-in-out 0.2s ;
+        img{
+            position:absolute ;
+            width: 100%;
+            transition:all ease-in-out 0.2s ;
+            &:nth-child(1){
+                opacity: 1;
+                &:hover{
+                    transition:all ease-in-out 0.2s ;
+                    opacity: 0;
+                }
+            }
+        }
     }
     .team1{
-            background:url(assets/img/team/t1.jpg) ;
-            background-position: center;
-            background-repeat:no-repeat;
-            background-size:cover;
+           
+            
+            background:transparent ;
+            transition:all ease-in-out 0.2s ;
             
             &:hover{
-                
-                background:url(assets/img/team/t11.jpg);
-                background-position: center;
-                background-repeat:no-repeat;
-                background-size:cover;
+                    transition:all ease-in-out 0.2s ;
+                    background:url(assets/img/team/t11.jpg) ;
+                    background-position: center top;
+                    background-repeat:no-repeat;
+                    background-size:cover;
+                    
             }
     }
     .team2{
-            background:url(assets/img/team/t2.jpg) ;
-            background-position: center top;
-            background-repeat:no-repeat;
-            background-size:cover;
             
+            background:transparent ;
+            transition:all ease-in-out 0.2s ;
+            background-position: center -55px;
             &:hover{
-                background-position: center -56px;
-                
-                background:url(assets/img/team/t22.jpg);
-                
-                background-repeat:no-repeat;
-                background-size:cover;
+                    transition:all ease-in-out 0.2s ;
+                    background:url(assets/img/team/t22.jpg) ;
+                    background-position: center top;
+                    background-repeat:no-repeat;
+                    background-size:cover;
+                    background-position: center -55px;
             }
+            
+          
     }
     .team3{
-            background:url(assets/img/team/t3.jpg) ;
-            background-position: center;
+            img{
+                height: 100%;
+            }
+            background:transparent ;
+            transition:all ease-in-out 0.2s ;
+            background-position: center -55px;
+            &:hover{
+                    transition:all ease-in-out 0.2s ;
+                    background:url(assets/img/team/t33.jpg) ;
+                    background-position: center -55px;
             background-repeat:no-repeat;
             background-size:cover;
-            
-            &:hover{
-                background:url(assets/img/team/t33.jpg);
-                background-position: center;
-                background-repeat:no-repeat;
-                background-size:cover;
             }
+            
+            
     }
     .team-title {
         margin: 20px 0;
@@ -389,23 +401,24 @@ export const Button = styled.div`
         }
     }
 `
-export const CategoryCont = styled.div`
-    .catContainer {
+export const ItemContainer = styled.div`
+    .items-container {
         display: flex;
         width: 90%;
         margin: 50px auto;
-        justify-content: space-around;
+        justify-content: space-between;
         flex-wrap:wrap ;
     }
-    .cat-item {
+    .item {
         position: relative;
         transition:all ease-in 0.1s;
         cursor: pointer;
         &:hover{
-            .catLabel{
+            .label{
                 height: 100%;
                 transition:all ease-in 0.2s;
                 background-color: rgba(255,255,255,1);
+                h1 {font-size:25px;}
                 p{
                     display:block;
                 }
@@ -413,21 +426,22 @@ export const CategoryCont = styled.div`
             
         }
     }
-    .catBg {
+    .bg {
         position: relative;
         display: flex;
+        img {
+            width: 100%;
+            position: relative;
+            height: 300px;
+        }
     }
-    .catBg img {
-        width: 100%;
-        position: relative;
-        height: 369px;
-    }
-    .catLabel {
+
+    .label {
         position: absolute;
         width: 100%;
         text-align: center;
         bottom: 0;
-        height: 170px;
+        height: 60px;
         align-items: center;
         display: flex;
         justify-content: center;
@@ -440,45 +454,73 @@ export const CategoryCont = styled.div`
             margin: 25px auto;
             word-break: break-word;
         }
+        h1 {
+            font-size:33px;
+        }
     }
     .item-container {
-        margin: 20px 5px;
-        width: 25%;
+        margin: 20px 0px;
+        width: calc(25% - 15px);
+        a {color:#774e77};
     }
-    .btnBack {
+    .photos-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        padding: 33px;
+        img{
+            width:100%;
+        }
+        span {
+            margin-top: 33px;
+        }
+    }
+    
+
+`;
+export const BtnBack = styled.div`
+   
         position: fixed;
         z-index: 1;
         font-size: 2em;
         left: 10px;
         top: 10px;
-        color: #7d747d;
+        color: #fff;
         border-radius: 100%;
-        border: 2px solid #7d747d;
+        border: 2px solid #4d144d;
         width: 50px;
         height: 50px;
         display: flex;
         align-items: center;
         justify-content: center;
         text-decoration: none;
-        
+        background: #4d144d;
+        a{
+            color: inherit;
+        }
         &:hover{
             color: #b0b0b0;
             border: 2px solid #b0b0b0;
             transition: all ease-in 0.3s;
         }
-    }
-
+        button {
+            background: none;
+            border: none;
+            color: inherit;
+        }
+    
 `;
 export const PortadaBg = styled.div`
         width: 100%;
         height: 70vh;
         background-image:url(${props => props.bg});
-        background-position: center -25px;
+        background-position: center ${props => (props.h >= 4000  ? `${props.h / 100}%`:`${props.h / 200}%`)};
         background-repeat: no-repeat;
         background-size: cover;
         position: relative;
         &::before{
-            content: 'XV TEENS';
+            content: '${props => props.title}';
             position: absolute;
             width: 100%;
             height: 100%;
@@ -489,6 +531,7 @@ export const PortadaBg = styled.div`
             align-items: center;
             color: #fff;
             font-size: 5em;
+            text-transform:uppercase ;
         }
 `;
 export const Footer = styled.div`
@@ -512,5 +555,35 @@ export const Team = styled.div`
     width: 100%;
     display:flex;
 
+
+`;
+export const ContentS = styled.div`
+
+    width: 100%;
+    position: relative;
+    .album-container {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 57px;
+    }
+    .album-items {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    .item-container {
+        width: calc(25% - 25px);
+    }
+    .contBg img {
+        width: 100%;
+        filter: grayscale(100%);
+        transition: all ease-in 0.3s;
+        &:hover{
+            filter: grayscale(0%);
+        }
+    }
+`;
+export const AlbumsS = styled.div`
 
 `;

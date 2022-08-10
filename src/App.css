@@ -55,7 +55,23 @@ body{
 html,body{
   height: 100%;
 }
+
 .input-group > .form-control, .input-group > .form-select, .input-group > .form-floating{
   outline: none !important;
   box-shadow: none !important;
+}
+.gd-btn{
+  width: 100%;
+  background-color: #EA4335;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 28px;
+  height: 28x;
+  cursor: pointer;
+  font-weight: normal;
+  display: inline-block;
+  border-radius: 4px;
+  padding: 10px 14px;
+  border:none;
 }

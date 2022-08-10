@@ -2,7 +2,7 @@ import React,{useState, useEffect} from 'react';
 import { Link } from 'react-router-dom'
 import { useLocation } from "react-router-dom";
 import axios from 'axios';
-import { CategoryCont, PortadaBg } from '../styles/HomeStyle';
+import { BtnBack, CategoryCont, ItemContainer, PortadaBg } from '../styles/HomeStyle';
 import { HashLink } from 'react-router-hash-link';
 export default function Comercial(){
     const [datacat, setDatacat] = useState([]);
@@ -24,10 +24,10 @@ export default function Comercial(){
                 <div key={category.idcat} className="item-container">
                     
                     <Link to={{pathname: `/comercial/${category.name}`, hash: category.idcat}}>
-                        <div className="cat-item">
-                            <div className="catBg">
+                        <div className="item">
+                            <div className="bg">
                                 <img src={category.bgimage} alt="" />
-                                <div className="catLabel">
+                                <div className="label">
                                     <h1>{category.name.replaceAll('-', ' ')}</h1>
                                     <p>{category.desc}</p>
                                 </div>
@@ -37,15 +37,16 @@ export default function Comercial(){
                 </div>
             )
     });
-    const bgI = "assets/img/bgComercial.jpg";
+    const bgI = "/assets/img/bgComercial.jpg";
+    const title = "Comercial";
     return(
 
-        <CategoryCont>
-            <HashLink  to={{pathname: "/", hash: "#servicios"}} className="btnBack"><i className="fa-solid fa-arrow-left"></i></HashLink >
-        <PortadaBg bg={bgI}></PortadaBg>
-        <div className="catContainer">
+        <ItemContainer>
+            <BtnBack><HashLink  to={{pathname: "/", hash: "#servicios"}} className="btnBack"><i className="fa-solid fa-arrow-left"></i></HashLink ></BtnBack>
+        <PortadaBg bg={bgI} title={title}></PortadaBg>
+        <div className="items-container">
             {listacat}
         </div>        
-        </CategoryCont>
+        </ItemContainer>
     )
 }

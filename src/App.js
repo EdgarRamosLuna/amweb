@@ -10,6 +10,7 @@ import AddCategory from './components/admin/AddCategory';
 import Dashboard from './components/admin/Dashboard';
 import Content from './components/admin/Content';
 import AddContent from './components/admin/AddContent';
+import Albums from './components/Albums';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path="/" element={<Home/>} />
       <Route path="comercial" element={<Comercial />} />
       <Route path="comercial/:name" element={<Category />} />
+      <Route path="/:name" element={<Albums />} />
       <Route path="dashboard/" element={<Menu />}>
         <Route path="main" element={<Dashboard />} />
         <Route path="categorias" element={<Categories />} />
