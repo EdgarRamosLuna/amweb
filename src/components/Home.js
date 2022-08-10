@@ -2,11 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
-import { Footer, HomeStyle, Team } from '../styles/HomeStyle';
+import { Footer, HomeStyle, Team, Title } from '../styles/HomeStyle';
 import ScrollButton from './helpers/ScrollButton';
 import { Link } from 'react-router-dom'
 import { useLocation } from "react-router-dom";
 import { NavLink } from 'react-router-dom';
+import Form from './Form';
 
 
 export default function Home(){
@@ -78,9 +79,11 @@ export default function Home(){
             </header>
             <div className="services" ref={ser} id="servicios">
                 <div className="services-content" >
-                    <div className="services-title">
-                        <h1>Servicios</h1>
-                    </div>
+                    <Title>
+                        <div className="clients-title">
+                            <h1>Servicios</h1>
+                        </div>
+                    </Title>
                     <div className="services-items">
                         <div className="services-item">
                             
@@ -125,9 +128,11 @@ export default function Home(){
                 </div>
             </div>
             <div className="team" ref={tea}>
-                <div className="services-title">
-                    <h1>Team</h1>
-                </div>
+                <Title>
+                        <div className="clients-title">
+                            <h1>Team</h1>
+                        </div>
+                </Title>
                 <div className="team-cont">
                     
                     <div className="team-items">
@@ -168,9 +173,11 @@ export default function Home(){
             </div>
             <div className="clients" ref={cli}>
                 <div className="clients-content" >
+                    <Title>
                         <div className="clients-title">
                             <h1>Clientes</h1>
                         </div>
+                    </Title>
                     <div className="clients-slider">
                         <OwlCarousel className="owl-theme" {...options}>
                                         <div className="slider-item">
@@ -204,6 +211,7 @@ export default function Home(){
                     </div>
                 </div>
             </div>
+            <Form />
             <Footer>
                 <div className="social-bar">
                     <div className="social-item">

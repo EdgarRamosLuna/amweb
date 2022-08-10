@@ -32,7 +32,7 @@ export default function DrivePicker(props) {
           getImg(imgUrl);
         }
        
-        console.log(imgData);
+        console.log(data);
       },
     })
   }

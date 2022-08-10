@@ -390,7 +390,7 @@ export const Button = styled.div`
         box-sizing: border-box;
         align-items: center;
         justify-content: center;
-        background:transparent ;
+        background:#fff ;
         cursor: pointer;
         transition: all ease-in 0.1s;
         &:hover{
@@ -586,4 +586,53 @@ export const ContentS = styled.div`
 `;
 export const AlbumsS = styled.div`
 
+`;
+export const Title = styled.div`
+
+        background: #fff;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        .clients-title{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 0;
+            
+            &::before{
+            content: '';
+            width: 43%;
+            height: 1px;
+            background-color: #000;
+            display: flex;
+            position: absolute;
+            left: 1%;
+
+            }
+            &::after{
+                content: '';
+                width: 43%;
+                height: 1px;
+                background-color: #000;
+                display: flex;
+                position: absolute;
+                right: 1%;
+            }
+            h1 {
+                font-family: 'AM';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 45px;
+                line-height: 32px;
+                letter-spacing: 0.5px;
+                color: #000;
+                background: #fff;
+                z-index: 1;
+                position: relative;
+                box-sizing:border-box ;
+                padding:0 10px;
+            }
+        }
+    
 `;

@@ -66,7 +66,10 @@ export default function AddContent(props){
     const getImg = useCallback((data) =>{
         //setSetimages(images => [...images, data]);
         //arrayImg.push({'idimg':uniqid(),'img':data, 'idcont':'', 'portada':0});
-        setImgCont(prevImages => ([...prevImages, { 'idimg': uniqid(), 'img': data, 'idcont': '', 'portada': 0 }]));
+        if(data.length > 0){
+            setImgCont(prevImages => ([...prevImages, { 'idimg': uniqid(), 'img': data, 'idcont': '', 'portada': 0 }]));
+        }
+        
        /* for (let h = 0; h < arrayImg.length; h++) {
             arrayImgC.push(<div className="img-album"><div className="select-bg"><i class="fa-solid fa-circle-check"></i></div> <img src={arrayImg[h].img} alt="" /></div>);
             setImgCont(...imgCont,arrayImgC);
@@ -153,13 +156,14 @@ export default function AddContent(props){
                                     <div className="img-content" id="img-cont">
                                 
                                     {
-                                        imgCont && 
+                                        imgCont.length && 
                                         imgCont.map(image => 
                                                 <div class="img-album">
                                                     <div className="select-bg">
                                                         <i class={`fa-solid fa-circle-check ${image.portada == 1 ? "isPortada":""}` } onClick={()=> isPortada(image.idimg)}></i>
                                                     </div>
-                                                    <img src={image.img} alt="" />
+                                                    
+                                                    {image.img.length > 0 ? "" : <img src={image.img} alt="" />}
                                                 </div>
 
                                         )
