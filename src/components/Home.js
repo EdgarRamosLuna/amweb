@@ -72,7 +72,6 @@ export default function Home(){
                             <li><a href="#" onClick={(e)=> handleClick( e, tea)}>Team</a></li>
                             <li><a href="#" onClick={(e)=> handleClick( e, cli)}>Clientes</a></li>
                             <li><a href="#">Cotiza</a></li>
-                            <Link to ="/dashboard">Dashboard</Link>
                         </ul>
                     </div>
                 </div>
