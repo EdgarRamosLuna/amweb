@@ -26,7 +26,7 @@ export default function Albums(){
     }
     noId(name);*/
     useEffect(() => {
-        axios.post('https://amfotografia.herokuapp.com/api/photos/getdatabyid', {idcont:idcont}).then(res =>{
+        axios.post('/api/photos/getdatabyid', {idcont:idcont}).then(res =>{
             //noId(res.data);
             let categoryDataMain = res.data;
             

@@ -11,7 +11,7 @@ export default function Comercial(){
     const [imgBg, setImgBg] = useState();
 
     useEffect(() => {
-        axios.post('https://amfotografia.herokuapp.com/api/category/getcatbyser', {service: 1}).then(res =>{
+        axios.post('/api/category/getcatbyser', {service: 1}).then(res =>{
             const categoryData = res.data;
             setDatacat(res.data)
         }).catch(err =>{
