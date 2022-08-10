@@ -13,7 +13,7 @@ export default function UpdateCategory(props){
         setFile(e.target.files[0]);
     };
     useEffect(() => {
-        axios.post('/api/category/getcatdata', {idcat: idCat}).then(res =>{
+        axios.post('https://amfotografia.herokuapp.com/api/category/getcatdata', {idcat: idCat}).then(res =>{
             const categoryData = res.data[0];
             setName(categoryData.name.replaceAll('-', ' '));
             setService(categoryData.service);
@@ -39,7 +39,7 @@ export default function UpdateCategory(props){
                 idcat:idCat,
                 desc:desc,
             }
-            axios.post('/api/category/update', categoria)
+            axios.post('https://amfotografia.herokuapp.com/api/category/update', categoria)
             .then(res => {
                 alert(res.data);
                 hideModal();
@@ -70,7 +70,7 @@ export default function UpdateCategory(props){
                         desc:desc
 
                     }
-                    axios.post('/api/category/update', categoria)
+                    axios.post('https://amfotografia.herokuapp.com/api/category/update', categoria)
                     .then(res => {
                         alert(res.data);
                         hideModal();

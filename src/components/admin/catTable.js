@@ -41,7 +41,7 @@ export default function CatTable(props) {
   const {editBtn, newData} = props;
   const [dataCategoria, setDataCategoria] = useState([]);
     useEffect(() => {
-        axios.get('/api/category/getdata').then(res =>{
+        axios.get('https://amfotografia.herokuapp.com/api/category/getdata').then(res =>{
            // console.log(res.data);
             setDataCategoria(res.data);
         }).catch(err =>{
@@ -55,7 +55,7 @@ export default function CatTable(props) {
     let isDelete = window.confirm(`Estas seguro de eliminar el registro con el id '${idcat}'`);
     let hola = 1;
         if(hola ==1){
-            axios.post('/api/category/deletecat', {idcat:idcat})
+            axios.post('https://amfotografia.herokuapp.com/api/category/deletecat', {idcat:idcat})
             .then(res => {
               setDataCategoria(prev=>{
                     return prev.filter(categoria=>categoria.idcat!=idcat) 

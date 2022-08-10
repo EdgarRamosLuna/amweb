@@ -22,18 +22,18 @@ export default function Category(){
     }
     noId(catId);
     useEffect(() => {
-        axios.post('/api/content/getcontbycat', {idcat:catId}).then(res =>{
+        axios.post('https://amfotografia.herokuapp.com/api/content/getcontbycat', {idcat:catId}).then(res =>{
             noId(res.data);
             let categoryDataMain = res.data;
             console.log(categoryDataMain);
-            axios.post('/api/category/getportadabycat', {idcat:catId}).then(res =>{
+            axios.post('https://amfotografia.herokuapp.com/api/category/getportadabycat', {idcat:catId}).then(res =>{
                 setDatapor(res.data[0].bgimage);
             });
             //const idCont = res.data[0].idcont;
             //console.log(idCont);
             for (let i = 0; i < categoryDataMain.length; i++) {
                 const idCont = categoryDataMain[i].idcont;
-                axios.post('/api/photos/getphotosbyalbum', {idcont:idCont}).then(res =>{
+                axios.post('https://amfotografia.herokuapp.com/api/photos/getphotosbyalbum', {idcont:idCont}).then(res =>{
                     const categoryData = res.data[0];
                     
                     setDatapho(categoryData);
