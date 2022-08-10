@@ -6,6 +6,7 @@ import { Footer, HomeStyle, Team } from '../styles/HomeStyle';
 import ScrollButton from './helpers/ScrollButton';
 import { Link } from 'react-router-dom'
 import { useLocation } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
 
 export default function Home(){
@@ -71,6 +72,7 @@ export default function Home(){
                             <li><a href="#" onClick={(e)=> handleClick( e, tea)}>Team</a></li>
                             <li><a href="#" onClick={(e)=> handleClick( e, cli)}>Clientes</a></li>
                             <li><a href="#">Cotiza</a></li>
+                            <Link to ="/dashboard">Dashboard</Link>
                         </ul>
                     </div>
                 </div>
