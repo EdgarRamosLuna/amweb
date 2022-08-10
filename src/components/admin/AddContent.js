@@ -147,6 +147,9 @@ export default function AddContent(props){
                                     <CloudinaryUploadWidget getImg={getImg} />
                                     <center><b>O</b></center>
                                     <DrivePicker getImg={getImg} />
+                                    <div className="cat-form-input">
+                                        <Button onClick={guardarCategoria}>Guardar Categoria</Button>
+                                    </div>
                                     <div className="img-content" id="img-cont">
                                 
                                     {
@@ -164,9 +167,7 @@ export default function AddContent(props){
                                     </div>
                                     
                             </div>
-                            <div className="cat-form-input">
-                                <Button onClick={guardarCategoria}>Guardar Categoria</Button>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
