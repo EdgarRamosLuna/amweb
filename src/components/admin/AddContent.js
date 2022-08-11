@@ -47,30 +47,33 @@ export default function AddContent(props){
     const [imgCont, setImgCont] = useState('');
     const [ntfyStatus, setNtfyStatus] = useState(0);
     const isPortada = useCallback((id) =>{
-
+       
        for (let i = 0; i < imgCont.length; i++) {
         const imgId = imgCont[i].idimg;
         imgCont[i].portada = 0;
         if (imgId === id) {
                 imgCont[i].portada = 1;
                 console.log(imgCont);
-                setPortada(prevState => !prevState);
+                setPortada(1);
                 setNtfyStatus(prevState => !prevState);
+             
+                
                 
                 setTimeout(() => {
                     if(ntfyStatus === 1){
                         setNtfyStatus(1);
-                        setNoPor(true);
+                       
                     }else{
                         setNtfyStatus(0);
-                        setNoPor(false);
+                    
                     }
 
                 }, 3000);
         }
-        bgAdd();
-       }
         
+       }
+       
+       bgAdd();
     });
     const [isBrowser, setIsBrowser] = useState(null);
     const getImg = useCallback((img, tumb) =>{
@@ -109,7 +112,7 @@ export default function AddContent(props){
         document.getElementById(id).classList.remove('focus-input');
     }
     const noBg = () =>{
-            document.getElementById("guardarCat").disabled = false;
+            document.getElementById("guardarCat").disabled = true;
             const ic = document.querySelectorAll(".fa-circle-check");
             for (const i of ic) {
                 i.classList.add('no-por');
@@ -207,19 +210,20 @@ desc*/
 
             return false;
         }
-        if(ntfyStatus == 0){
-            setNoPor(prev => !prev);
+        if(portada == 0){
+           
+            setNoPor(true);
+            console.log(noPor);
             noBg();
                 setTimeout(() => {
-                    if(noPor === 1){
-                                 setNoPor(true);
-                            }else{
-                                disabledBtn();
-                                setNoPor(false);
-                            }
-
-                        }, 3000);
-
+                    if(noPor === false){
+                        setNoPor(false);
+                    }else{
+                        setNoPor(true);           
+                    }
+                    disabledBtn();
+            }, 3000);
+            
             return false;
         }
         setIdcont(content.idcont);
@@ -263,7 +267,7 @@ desc*/
                 <ContentS>
                 
                     <div className="modal-container" onClick={handleModalContainerClick}>
-                        <h1>Agregar Nuevo Albums</h1>
+                        <h1>Agregar Nuevo Album</h1>
                         <div className="cat-container">
                             <div className="cat-form">
                                 <div className="cat-form-input">
