@@ -32,11 +32,12 @@ export default function DrivePicker(props) {
           const docs = docsD[i];
           const imgUrl = `https://drive.google.com/uc?export=view&id=${docs.id}`;
           const tumbNail = `https://drive.google.com/thumbnail?id=${docs.id}`;
-          console.log(imgUrl);
-          getImg([{'img':imgUrl, 'tumbnail':tumbNail}]);
+     
+    //      getImg([{'img':imgUrl, 'tumbnail':tumbNail}]);
+          getImg(imgUrl, tumbNail);
         }
        
-        console.log(docsD);
+   
       },
     })
   }

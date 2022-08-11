@@ -56,12 +56,14 @@ export default function AddContent(props){
                 console.log(imgCont);
                 setPortada(prevState => !prevState);
                 setNtfyStatus(prevState => !prevState);
-                setNoPor(prevState => !prevState);
+                
                 setTimeout(() => {
                     if(ntfyStatus === 1){
                         setNtfyStatus(1);
+                        setNoPor(true);
                     }else{
                         setNtfyStatus(0);
+                        setNoPor(false);
                     }
 
                 }, 3000);
@@ -70,12 +72,19 @@ export default function AddContent(props){
        }
         
     });
-    const getImg = useCallback((data) =>{
+    const [isBrowser, setIsBrowser] = useState(null);
+    const getImg = useCallback((img, tumb) =>{
         //setSetimages(images => [...images, img]);
         //arrayImg.push({'idimg':uniqid(),'img':img, 'idcont':'', 'portada':0});
-        console.log(data[0].img);
-        if(data.length > 0){
-            setImgCont(prevImages => ([...prevImages, { 'idimg': uniqid(), 'img': data[0].img, 'idcont': '', 'portada': 0, "tumbNail":data[0].tumbnail}]));
+       
+        if (navigator.userAgent.includes("Firefox")) {
+            setIsBrowser('Firefox');
+        }
+        if (navigator.userAgent.includes("Chrome")) {
+            setIsBrowser('Chrome');
+        }
+        if(img.length > 0){
+            setImgCont(prevImages => ([...prevImages, { 'idimg': uniqid(), 'img': img, 'idcont': '', 'portada': 0, "tumbnail":tumb}]));
         }
         
        /* for (let h = 0; h < arrayImg.length; h++) {
@@ -301,8 +310,8 @@ desc*/
                                                     <div className="select-bg">
                                                         <i class={`fa-solid fa-circle-check ${image.portada == 1 ? "isPortada":""}` } onClick={()=> isPortada(image.idimg)}></i>
                                                     </div>
-                                                    
-                                                    <img src={image.tumbNail} alt="" />
+                                                    {/*isBrowser == "Firefox" ? <img src={image.img} alt="" className="tumb-f" /> : <img src={image.tumbnail} alt="" />*/}
+                                                    <img src={image.tumbnail} alt="" />
                                                 </div>
 
                                         )

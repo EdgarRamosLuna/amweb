@@ -179,6 +179,9 @@ export const ContentS = styled.div`
             height: auto;
         }
     }
+    .tumb-f{
+        height: 220px !important;
+    }
     .select-bg {
         position: absolute;
         z-index: 9;
