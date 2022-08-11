@@ -8,10 +8,14 @@ import DrivePicker from '../helpers/DrivePicker';
 export default function AddContent(props){
     const {closeModal, newData} = props;
     const [titulo, setTitulo] = useState('');
-    const [categoria, setCategoria] = useState();
-    const [file, setFile] = useState();
+    const [categoria, setCategoria] = useState('');
+    const [file, setFile] = useState('');
     const [desc, setDesc] = useState('');
     const handleModalContainerClick = (e) => e.stopPropagation();
+    const [noimg, setNoimg] = useState(false);
+    const [isEmpty, setIsEmpty] = useState(false);
+    const [noPor, setNoPor] = useState(false);
+    const [fieldname, setFieldname] = useState(""); 
     const hideModal = ()=>{
         if(typeof(closeModal) == 'function'){
             closeModal();
@@ -24,12 +28,13 @@ export default function AddContent(props){
     };
     const [dataCats, setDataCats] = useState([]);
     useEffect(() => {
-        axios.get('https://amfotografia.herokuapp.com/api/category/getdata').then(res =>{
+        axios.get('https://amfotografiatest.herokuapp.com/api/category/getdata').then(res =>{
             console.log(res.data);
             setDataCats(res.data);
         }).catch(err =>{
             console.log(err);
         });
+   //     return () => console.log("Cleanup..");
     }, []);
  
    const initialState = {
@@ -51,6 +56,7 @@ export default function AddContent(props){
                 console.log(imgCont);
                 setPortada(prevState => !prevState);
                 setNtfyStatus(prevState => !prevState);
+               
                 setTimeout(() => {
                     if(ntfyStatus === 1){
                         setNtfyStatus(1);
@@ -60,14 +66,16 @@ export default function AddContent(props){
 
                 }, 3000);
         }
+        bgAdd();
        }
         
     });
     const getImg = useCallback((data) =>{
-        //setSetimages(images => [...images, data]);
-        //arrayImg.push({'idimg':uniqid(),'img':data, 'idcont':'', 'portada':0});
+        //setSetimages(images => [...images, img]);
+        //arrayImg.push({'idimg':uniqid(),'img':img, 'idcont':'', 'portada':0});
+        console.log(data[0].img);
         if(data.length > 0){
-            setImgCont(prevImages => ([...prevImages, { 'idimg': uniqid(), 'img': data, 'idcont': '', 'portada': 0 }]));
+            setImgCont(prevImages => ([...prevImages, { 'idimg': uniqid(), 'img': data[0].img, 'idcont': '', 'portada': 0, "tumbNail":data[0].tumbnail}]));
         }
         
        /* for (let h = 0; h < arrayImg.length; h++) {
@@ -81,8 +89,32 @@ export default function AddContent(props){
 
     }, [imgCont, setImgCont])
    
- 
+    const disabledBtn = () =>{
+        document.getElementById("guardarCat").disabled = !true;
+    }
+    const focusInput = (id) =>{
+        document.getElementById(id).focus();
+        document.getElementById(id).classList.add('focus-input');
+    }
+    const removeFocus = (id) =>{
+        document.getElementById(id).classList.remove('focus-input');
+    }
+    const noBg = () =>{
+            document.getElementById("guardarCat").disabled = false;
+            const ic = document.querySelectorAll(".fa-circle-check");
+            for (const i of ic) {
+                i.classList.add('no-por');
+            }
+    }
+    const bgAdd = () =>{
+    
+        const ic = document.querySelectorAll(".fa-circle-check");
+        for (const i of ic) {
+            i.classList.remove('no-por');
+        }
+    }
     const guardarCategoria = () =>{
+        
         
         let content = {
             idcont:uniqid(),
@@ -90,14 +122,106 @@ export default function AddContent(props){
             idcat: categoria,
             desc:desc,
         }
+       
+    /*    titulo
+categoria
+desc*/
+        if(titulo.length == 0){
+            setIsEmpty(prev => !prev);
+            document.getElementById("guardarCat").disabled = true;
+            setFieldname("Titulo");
+            focusInput("titulo");
+                setTimeout(() => {
+                    if(isEmpty === true){
+                      //  console.log("asdsd");
+                                setIsEmpty(true);
+                            }else{
+                                disabledBtn();
+                                setIsEmpty(false);
+                            }
+
+                        }, 3000);
+
+            return false;
+        }else{
+            removeFocus("titulo");
+        }
+        if(desc.length == 0){
+            setIsEmpty(prev => !prev);
+            document.getElementById("guardarCat").disabled = true;
+            setFieldname("Descripcion");
+            focusInput("desc");
+                setTimeout(() => {
+                    if(isEmpty === 1){
+                                setIsEmpty(true);
+                            }else{
+                                disabledBtn();
+                                setIsEmpty(false);
+                            }
+
+                        }, 3000);
+
+            return false;
+        }else{
+            removeFocus("desc");
+        }
+        if(categoria == 0){
+            setIsEmpty(prev => !prev);
+            document.getElementById("guardarCat").disabled = true;
+            setFieldname("Categoria");
+            focusInput("categoria");
+                setTimeout(() => {
+                    if(isEmpty === 1){
+                                setIsEmpty(true);
+                            }else{
+                                disabledBtn();
+                                setIsEmpty(false);
+                            }
+
+                        }, 3000);
+
+            return false;
+        }
+        
+        if(imgCont.length == 0){
+            setNoimg(prev => !prev);
+            document.getElementById("guardarCat").disabled = true;
+                setTimeout(() => {
+                    if(noimg === 1){
+                                setNoimg(true);
+                            }else{
+                                disabledBtn();
+                                setNoimg(false);
+                            }
+
+                        }, 3000);
+
+            return false;
+        }
+        if(ntfyStatus == 0){
+            setNoPor(prev => !prev);
+            noBg();
+                setTimeout(() => {
+                    if(noPor === 1){
+                                 setNoPor(true);
+                            }else{
+                                disabledBtn();
+                                setNoPor(false);
+                            }
+
+                        }, 3000);
+
+            return false;
+        }
         setIdcont(content.idcont);
-        axios.post('https://amfotografia.herokuapp.com/api/content/add', content)
+        axios.post('https://amfotografiatest.herokuapp.com/api/content/add', content)
         .then(res => {
             alert(res.data);
+            
             for (let i = 0; i < imgCont.length; i++) {
                 imgCont[i].idcont = content.idcont;
             }
-            axios.post('https://amfotografia.herokuapp.com/api/photos/add', imgCont)
+            axios.post('https://amfotografiatest.herokuapp.com/api/photos/add', imgCont)
             .then(res => {
                 alert(res.data);
                 
@@ -105,10 +229,10 @@ export default function AddContent(props){
         })
             
         }
-        const categorias = dataCats.map(category =>{
+        const categorias = dataCats.map((category, index) =>{
             return(
                 <>  
-                    <option key={category._id} value={category.idcat}>{category.name}</option>
+                    <option key={index} value={category.idcat}>{category.name.replaceAll("-", " ")}</option>
                 </>
             )
         });
@@ -124,6 +248,9 @@ export default function AddContent(props){
         return(
             <>
                 {ntfyStatus ? <Notify closeModal={()=> setNtfyStatus(prevState => !prevState)}>Portada seleccionada</Notify> : ""}
+                {noimg ? <Notify closeModal={()=> setNoimg(prevState => !prevState)}>Sebes seleccionar almenos una imagen para continuar</Notify> : ""}
+                {isEmpty ? <Notify closeModal={()=> setIsEmpty(prevState => !prevState)}>El campo {fieldname} es obligatorio.</Notify> : ""}
+                {noPor ? <Notify closeModal={()=> setNoPor(prevState => !prevState)}>Debes seleccionar una imagen de portada para continuar.</Notify> : ""}
                 <ContentS>
                 
                     <div className="modal-container" onClick={handleModalContainerClick}>
@@ -132,38 +259,50 @@ export default function AddContent(props){
                             <div className="cat-form">
                                 <div className="cat-form-input">
                                     <label htmlFor="titulo">Titulo del album</label>
-                                    <input type="text" id="titulo" value={titulo} onChange={(e)=> {setTitulo(e.target.value)}} />
+                                    <input type="text" id="titulo" value={titulo} onChange={(e)=> {setTitulo(e.target.value); removeFocus("titulo")}} />
                                 </div>
                                 <div className="cat-form-input">
                                     <label htmlFor="desc">Descripcion</label>
-                                    <textarea id="desc" value={desc} onChange={(e)=> {setDesc(e.target.value)}} maxLength="200"></textarea>
+                                    <textarea id="desc" value={desc} onChange={(e)=> {setDesc(e.target.value); removeFocus("desc")}} maxLength="200"></textarea>
                                 </div>
                                 <div className="cat-form-input">
                                     <label htmlFor="titulo">Categoria</label>
-                                    <select value={categoria} onChange={(e) => {setCategoria(e.target.value)}}>
+                                    <select 
+                                        value={categoria} 
+                                        onChange={(e) => {setCategoria(e.target.value); 
+                                        if(e.target.value !== 0){
+                                            removeFocus("categoria");
+                                        }else{
+                                            focusInput("categoria");
+                                        }}} 
+
+                                        id="categoria"
+                                        
+                                        >
                                         <option value="0" selected>Selecciona una categoria</option>
                                         {categorias}
                                     </select>
                                 </div>
                                 <div className="cat-form-input">
                                     <label htmlFor="titulo">Contenido del album</label>
-                                    <CloudinaryUploadWidget getImg={getImg} />
-                                    <center><b>O</b></center>
+                                    {/*<CloudinaryUploadWidget getImg={getImg} />
+                                    <center><b>O</b></center>*/}
                                     <DrivePicker getImg={getImg} />
-                                    <div className="cat-form-input">
-                                        <Button onClick={guardarCategoria}>Guardar Categoria</Button>
-                                    </div>
+                                    
+                                    <Button onClick={guardarCategoria} id="guardarCat">Guardar Categoria</Button>
+
                                     <div className="img-content" id="img-cont">
                                 
                                     {
-                                        imgCont.length && 
-                                        imgCont.map(image => 
-                                                <div class="img-album">
+                                        imgCont && 
+                                        imgCont.map((image, index) => 
+                                                
+                                                <div class="img-album" key={image.idimg}>
                                                     <div className="select-bg">
                                                         <i class={`fa-solid fa-circle-check ${image.portada == 1 ? "isPortada":""}` } onClick={()=> isPortada(image.idimg)}></i>
                                                     </div>
                                                     
-                                                    {image.img.length > 0 ? "" : <img src={image.img} alt="" />}
+                                                    <img src={image.tumbNail} alt="" />
                                                 </div>
 
                                         )

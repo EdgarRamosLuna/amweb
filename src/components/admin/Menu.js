@@ -13,6 +13,7 @@ export default function Menu(){
                     <ul>
                         <li className="dashboard"><Link to ="/dashboard/main">Dashboard</Link></li>
                         <li className="cat"><Link to ="/dashboard/categorias">Categorias</Link></li>
+                        <li className="serv"><Link to ="servicios">Servicios</Link></li>
                         <li className="cont"><Link to ="/dashboard/albums">Albums</Link></li>
                         <li className="logout"><Link to ="/dashboard/lougout">Cerrar Sesion</Link></li>
                     </ul>

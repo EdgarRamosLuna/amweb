@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from 'react';
-import { Link, useParams, redirect } from 'react-router-dom'
+import { Link, useParams, redirect, useNavigate } from 'react-router-dom'
 import { useLocation } from "react-router-dom";
 import axios from 'axios';
 import { BtnBack, ContentS, ItemContainer, PortadaBg } from '../styles/HomeStyle';
@@ -13,27 +13,28 @@ export default function Category(){
     const [datacat, setDatacat] = useState([]);
     const [datapho, setDatapho] = useState([]);
     const [datapor, setDatapor] = useState([]);
-    
+    const navigate = useNavigate();
+    const nameService = location.pathname.toLowerCase();
     const noId = (id) =>{
         if(id === '' || id.length == 0){
-            window.location.href = "/comercial";
+            window.location.href = "/";
             return false;
         }
     }
     noId(catId);
     useEffect(() => {
-        axios.post('https://amfotografia.herokuapp.com/api/content/getcontbycat', {idcat:catId}).then(res =>{
+        axios.post('https://amfotografiatest.herokuapp.com/api/content/getcontbycat', {idcat:catId}).then(res =>{
             noId(res.data);
             let categoryDataMain = res.data;
             console.log(categoryDataMain);
-            axios.post('https://amfotografia.herokuapp.com/api/category/getportadabycat', {idcat:catId}).then(res =>{
+            axios.post('https://amfotografiatest.herokuapp.com/api/category/getportadabycat', {idcat:catId}).then(res =>{
                 setDatapor(res.data[0].bgimage);
             });
             //const idCont = res.data[0].idcont;
             //console.log(idCont);
             for (let i = 0; i < categoryDataMain.length; i++) {
                 const idCont = categoryDataMain[i].idcont;
-                axios.post('https://amfotografia.herokuapp.com/api/photos/getphotosbyalbum', {idcont:idCont}).then(res =>{
+                axios.post('https://amfotografiatest.herokuapp.com/api/photos/getphotosbyalbum', {idcont:idCont}).then(res =>{
                     const categoryData = res.data[0];
                     
                     setDatapho(categoryData);
@@ -63,7 +64,7 @@ export default function Category(){
         return(
                 <div key={category.idcont} className="item-container">
                     
-                    <Link to={{pathname: `/${name}/`, hash:category.idcont}}>
+                    <Link to={{pathname: `${nameService}/${name}`, hash:category.idcont}}>
                         <div className="item">
                             <div className="bg">
                                 <img src={category.portada} alt="" />
@@ -91,7 +92,7 @@ export default function Category(){
     return(
         <>
             <ItemContainer>
-            <BtnBack><Link  to={{pathname: "/comercial"}} className="btnBack"><i className="fa-solid fa-arrow-left"></i></Link ></BtnBack>
+            <BtnBack><button onClick={()=> navigate(-1)}   className="btnBack"><i className="fa-solid fa-arrow-left"></i></button ></BtnBack>
             <PortadaBg bg={bgI} title={title} h={imgh} w={imgw}></PortadaBg>
         
             <div className="items-container">

@@ -7,6 +7,7 @@ export default function DrivePicker(props) {
   // const customViewsArray = [new google.picker.DocsView()]; // custom view
   const {getImg} = props;
   const [imgData, setImgData] = useState([]);
+  let docsD;
   const handleOpenPicker = () => {
     
     openPicker({
@@ -25,14 +26,17 @@ export default function DrivePicker(props) {
         if (data.action === 'cancel') {
           console.log('User clicked cancel/close button')
         }
-        const docsD = data.docs;
+        
+        docsD = data.docs;
         for (let i = 0; i < docsD.length; i++) {
           const docs = docsD[i];
           const imgUrl = `https://drive.google.com/uc?export=view&id=${docs.id}`;
-          getImg(imgUrl);
+          const tumbNail = `https://drive.google.com/thumbnail?id=${docs.id}`;
+          console.log(imgUrl);
+          getImg([{'img':imgUrl, 'tumbnail':tumbNail}]);
         }
        
-        console.log(data);
+        console.log(docsD);
       },
     })
   }

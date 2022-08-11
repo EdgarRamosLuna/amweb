@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 export const HomeStyle = styled.div`
+   // cursor: url(/assets/img/cursor.cur), auto;
     @font-face {
     font-family: 'AM';
-    src:url(assets/fonts/nouvelle_vague_final.ttf);
+    src:url(/assets/fonts/nouvelle_vague_final.ttf);
     /* other formats include: 'woff2', 'truetype, 'opentype',
                                 'embedded-opentype', and 'svg' */
     }
@@ -317,7 +318,7 @@ export const HomeStyle = styled.div`
             
             &:hover{
                     transition:all ease-in-out 0.2s ;
-                    background:url(assets/img/team/t11.jpg) ;
+                    background:url(/assets/img/team/t11.jpg) ;
                     background-position: center top;
                     background-repeat:no-repeat;
                     background-size:cover;
@@ -331,7 +332,7 @@ export const HomeStyle = styled.div`
             background-position: center -55px;
             &:hover{
                     transition:all ease-in-out 0.2s ;
-                    background:url(assets/img/team/t22.jpg) ;
+                    background:url(/assets/img/team/t22.jpg) ;
                     background-position: center top;
                     background-repeat:no-repeat;
                     background-size:cover;
@@ -349,7 +350,7 @@ export const HomeStyle = styled.div`
             background-position: center -55px;
             &:hover{
                     transition:all ease-in-out 0.2s ;
-                    background:url(assets/img/team/t33.jpg) ;
+                    background:url(/assets/img/team/t33.jpg) ;
                     background-position: center -55px;
             background-repeat:no-repeat;
             background-size:cover;

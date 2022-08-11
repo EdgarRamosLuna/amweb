@@ -8,12 +8,13 @@ import { Link } from 'react-router-dom'
 import { useLocation } from "react-router-dom";
 import { NavLink } from 'react-router-dom';
 import Form from './Form';
-
+import axios from 'axios';
 
 export default function Home(){
     const ser = useRef(null);
     const cli = useRef(null);
     const tea = useRef(null);
+    const cot = useRef(null);
     const handleClick = (e, ref) => {
         e.preventDefault();
         ref.current?.scrollIntoView({behavior: 'smooth'});
@@ -27,6 +28,16 @@ export default function Home(){
       
         return null;
     }
+    const [dataService, setDataService] = useState([]);
+    useEffect(() => {
+        axios.get('https://amfotografiatest.herokuapp.com/api/service/getdata').then(res =>{
+            console.log(res.data);
+            setDataService(res.data);
+        }).catch(err =>{
+            console.log(err);
+        });
+    }, []);
+    
    // ScrollToTop();
     const options = {
         margin: 30,
@@ -72,7 +83,7 @@ export default function Home(){
                             
                             <li><a href="#" onClick={(e)=> handleClick( e, tea)}>Team</a></li>
                             <li><a href="#" onClick={(e)=> handleClick( e, cli)}>Clientes</a></li>
-                            <li><a href="#">Cotiza</a></li>
+                            <li><a href="#" onClick={(e)=> handleClick( e, cot)}>Cotiza</a></li>
                         </ul>
                     </div>
                 </div>
@@ -85,45 +96,29 @@ export default function Home(){
                         </div>
                     </Title>
                     <div className="services-items">
-                        <div className="services-item">
-                            
-                            <div >
-                                <Link to="/comercial" className="services-item-img">
-                                <img src="assets/img/social.jpg" alt="" />
-                                <div className="services-item-title">
-                                    <h3>Eventos</h3>
-                                </div>
-                                <div className="animationbg"></div>
-                                </Link>
-                            </div>
-                            
-                        </div>
-                        <div className="services-item" >
-                            <div >
-                                <Link to="/comercial" className="services-item-img">
-                                <img src="assets/img/social.jpg" alt="" />
+                        {
+                            dataService &&
+                            dataService.map(service => 
+                                <>
+                                <div className="services-item">
+                                        <div>
+                                           { 
+                                           
+                                           <Link to={{pathname: `servicio/${service.name.toLowerCase()}`, hash:service.idser}} className="services-item-img">
+                                            <img src={service.bgimage} alt="" />
+                                            <div className="services-item-title">
+                                                <h3>{service.name}</h3>
+                                            </div>
+                                            <div className="animationbg"></div>
+                                            </Link>
+                                            }
+                                        </div>
+                                    </div>
+                                </>
                                 
-                                <div className="services-item-title">
-                                    <h3>Sesiones</h3>
-                                </div>
-                                <div className="animationbg"></div>
-                                </Link>
-                            </div>
+                            )
                             
-                        </div>
-                        <div className="services-item" >
-                            <div >
-                                <Link to="/comercial" className="services-item-img">
-                                <img src="assets/img/social.jpg" alt="" />
-                                
-                                <div className="services-item-title">
-                                    <h3>Comercial</h3>
-                                </div>
-                                <div className="animationbg"></div>
-                                </Link>
-                            </div>
-                            
-                        </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -211,7 +206,9 @@ export default function Home(){
                     </div>
                 </div>
             </div>
-            <Form />
+            <div ref={cot}>
+                <Form  />
+            </div>
             <Footer>
                 <div className="social-bar">
                     <div className="social-item">

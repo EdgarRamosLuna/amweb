@@ -16,13 +16,7 @@ import {
 const STORY_HEADERS = [
   {
     prop: "name",
-    title: "Nombre de la categoria",
-    isFilterable: true,
-    isSortable: true
-  },
-  {
-    prop: "service",
-    title: "Servicio",
+    title: "Nombre del Servicio",
     isFilterable: true,
     isSortable: true
   },
@@ -37,21 +31,13 @@ const STORY_HEADERS = [
 ];
 
 // Then, use it in a component.
-export default function CatTable(props) {
+export default function SerTable(props) {
   const {editBtn, newData} = props;
   const [dataCategoria, setDataCategoria] = useState([]);
-  const [dataService, setDataService] = useState([]);
-
     useEffect(() => {
-        axios.get('https://amfotografiatest.herokuapp.com/api/category/getdata').then(res =>{
+        axios.get('https://amfotografiatest.herokuapp.com/api/service/getdata').then(res =>{
            // console.log(res.data);
             setDataCategoria(res.data);
-            axios.get('https://amfotografiatest.herokuapp.com/api/service/getdata').then(res =>{
-                console.log(res.data);
-                setDataService(res.data);
-              }).catch(err =>{
-                  console.log(err);
-              });
         }).catch(err =>{
             console.log(err);
         });
@@ -63,10 +49,10 @@ export default function CatTable(props) {
     let isDelete = window.confirm(`Estas seguro de eliminar el registro con el id '${idcat}'`);
     let hola = 1;
         if(hola ==1){
-            axios.post('https://amfotografiatest.herokuapp.com/api/category/deletecat', {idcat:idcat})
+            axios.post('https://amfotografiatest.herokuapp.com/api/service/deleteser', {idser:idcat})
             .then(res => {
               setDataCategoria(prev=>{
-                    return prev.filter(categoria=>categoria.idcat!=idcat) 
+                    return prev.filter(categoria=>categoria.idser!=idcat) 
                 })
                 alert(res.data);
             })
@@ -81,19 +67,12 @@ export default function CatTable(props) {
 }
   for (let i = 0; i < dataCategoria.length; i++) {
     
-    const idcat = dataCategoria[i].idcat;
+    const idser = dataCategoria[i].idser;
     const name = dataCategoria[i].name.replaceAll('-', ' ');
-    const service = dataCategoria[i].service;
     let serviceTxt = "";
-    for (let j = 0; j < dataService.length; j++) {
-      if(service == dataService[j].idser){
-        serviceTxt = dataService[j].name;
-      }
-    }
-    
     const img = <img className="cat-db-img" src={dataCategoria[i].bgimage} alt="" />;
-    const btnActions = <div className="btnActionsCont"><button className="btnEdit" type="button" onClick={()=> editBtn(idcat)}><i class="fa-solid fa-pen-to-square"></i></button><button type="button" onClick={() => borrarCat(idcat)} className="btnDel"><i class="fa-solid fa-trash"></i></button></div>;
-    data.push({"name":name, "img":img, "service":serviceTxt,"btnActions":btnActions});
+    const btnActions = <div className="btnActionsCont"><button className="btnEdit" type="button" onClick={()=> editBtn(idser)}><i class="fa-solid fa-pen-to-square"></i></button><button type="button" onClick={() => borrarCat(idser)} className="btnDel"><i class="fa-solid fa-trash"></i></button></div>;
+    data.push({"name":name, "img":img,"btnActions":btnActions});
   }
   data.shift();
   return (

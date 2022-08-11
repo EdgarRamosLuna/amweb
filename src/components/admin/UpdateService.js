@@ -1,31 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { Button, ModalCat } from '../../styles/Categories';
 import axios from 'axios';
-export default function UpdateCategory(props){
-    const {closeModal, idCat, newData} = props;
+export default function UpdateService(props){
+    const {closeModal, idSer, newData} = props;
     const [name , setName] = useState();
     const [service, setService] = useState();
     const [imgBg, setImgBg] = useState();
     const [file, setFile] = useState();
     const [fileStatus, setFileStatus] = useState(false);
     const [desc, setDesc] = useState('');
+    console.log(idSer);
     const saveFile = (e) => {
         setFile(e.target.files[0]);
     };
-    const [dataServicio, setDataServicio] = useState([]);
     useEffect(() => {
-        axios.post('https://amfotografiatest.herokuapp.com/api/category/getcatdata', {idcat: idCat}).then(res =>{
-            const categoryData = res.data[0];
-            setName(categoryData.name.replaceAll('-', ' '));
-            setService(categoryData.service);
-            setImgBg(categoryData.bgimage);
-            setDesc(categoryData.desc);
-            axios.get('https://amfotografiatest.herokuapp.com/api/service/getdata').then(res =>{
-            // console.log(res.data);
-                setDataServicio(res.data);
-            }).catch(err =>{
-                console.log(err);
-            });
+        axios.post('https://amfotografiatest.herokuapp.com/api/service/getserdata', {idser: idSer}).then(res =>{
+            const serviceData = res.data[0];
+            
+            setName(serviceData.name.replaceAll('-', ' '));
+            setService(serviceData.service);
+            setImgBg(serviceData.bgimage);
+            setDesc(serviceData.desc);
         }).catch(err =>{
             console.log(err);
         });
@@ -43,17 +38,17 @@ export default function UpdateCategory(props){
             let categoria = {
                 name: name.replaceAll(' ', '-'),
                 service:service,
-                idcat:idCat,
+                idser:idSer,
                 desc:desc,
             }
-            axios.post('https://amfotografiatest.herokuapp.com/api/category/update', categoria)
+            axios.post('https://amfotografiatest.herokuapp.com/api/service/update', categoria)
             .then(res => {
                 alert(res.data);
                 hideModal();
                 const newDatadb = {
                     "name":categoria.name,
                     "bgimage":imgBg,
-                    "idcat":categoria.idcat,
+                    "idSer":categoria.idSer,
                 }
                 newData(newDatadb);
                 setBtnStatus(false);
@@ -72,12 +67,11 @@ export default function UpdateCategory(props){
                     let categoria = {
                         name: name.replaceAll(' ', '-'),
                         bgimage: response.data.secure_url,
-                        service:service,
-                        idcat:idCat,
+                        idser:idSer,
                         desc:desc
 
                     }
-                    axios.post('https://amfotografiatest.herokuapp.com/api/category/update', categoria)
+                    axios.post('https://amfotografiatest.herokuapp.com/api/service/update', categoria)
                     .then(res => {
                         alert(res.data);
                         hideModal();
@@ -85,7 +79,7 @@ export default function UpdateCategory(props){
                         const newDatadb = {
                             "name":categoria.name,
                             "bgimage":categoria.bgimage,
-                            "idcat":categoria.idcat,
+                            "idser":categoria.idSer,
                         }
     
                         newData(newDatadb);
@@ -128,30 +122,16 @@ export default function UpdateCategory(props){
                 <div className="btn-modal-close">
                     <button onClick={hideModal}><i className="fa-solid fa-xmark"></i></button>
                 </div>
-                <h1>Editar Categoria</h1>
+                <h1>Editar Servicio</h1>
                 <div className="cat-container">
                     <div className="cat-form">
                         <div className="cat-form-input">
-                            <label htmlFor="titulo">Titulo de la Categoria</label>
+                            <label htmlFor="titulo">Titulo del Servicio</label>
                             <input type="text" name="" value={name} onChange={(e)=> {setName(e.target.value)}} />
                         </div>
                         <div className="cat-form-input">
                                 <label htmlFor="desc">Descripcion</label>
                                 <textarea id="desc" value={desc} onChange={(e)=> {setDesc(e.target.value)}} maxLength="200"></textarea>
-                        </div>
-                        <div className="cat-form-input">
-                                <label htmlFor="titulo">Tipo de servicio</label>
-                                <select value={service} onChange={(e) => {setService(e.target.value)}}>
-                                    <option value="0" selected>Selecciona un servicio</option>
-                                    {
-                                        dataServicio.length && 
-                                        dataServicio.map(service => 
-                                            <>
-                                                <option value={service.idser}>{service.name}</option>
-                                            </>
-                                        )
-                                    }
-                                </select>
                         </div>
                         <div className="cat-form-input">
                             <label htmlFor="titulo">Portada de la Categoria</label>

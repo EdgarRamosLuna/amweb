@@ -7,6 +7,7 @@ export const ContentS = styled.div`
     padding:0 35px;
     margin-left:200px;
     padding-top: 25px;
+    
     .cat-container {
         display: flex;
         flex-direction: column;
@@ -175,7 +176,7 @@ export const ContentS = styled.div`
         margin: 50px 0;
         position: relative;
         img {
-            height: 304px;
+            height: auto;
         }
     }
     .select-bg {
@@ -196,6 +197,11 @@ export const ContentS = styled.div`
         background: #5cff00 !important;
         color: #fff !important;
     }
+    .no-por{
+        color: #e10000 !important;
+        transition:all ease-out 0.2s;
+        background: #fff !important;
+    }
 `;
 export const Button = styled.button`
         height: 40px;
@@ -212,6 +218,7 @@ export const Button = styled.button`
         outline: none;
         transition: all ease-in 0.3s;
         justify-content: center;
+        margin:15px 0;
         a{
             color:inherit ;
         }

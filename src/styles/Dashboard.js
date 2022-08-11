@@ -62,6 +62,12 @@ export const MenuDash = styled.div`
         left: -30px;
         color:#fff;
     }
+    .serv::before {
+        font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f03e";
+        position: absolute;
+        left: -30px;
+        color:#fff;
+    }
     .logout::before{
         font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f08b";
         position: absolute;
@@ -82,5 +88,8 @@ export const MenuDash = styled.div`
             padding: 11px;
             box-sizing: border-box;
         }
+    }
+    .focus-input {
+        border: 1px solid red !important;
     }
 `;
