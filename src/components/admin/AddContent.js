@@ -56,7 +56,7 @@ export default function AddContent(props){
                 console.log(imgCont);
                 setPortada(prevState => !prevState);
                 setNtfyStatus(prevState => !prevState);
-               
+                setNoPor(prevState => !prevState);
                 setTimeout(() => {
                     if(ntfyStatus === 1){
                         setNtfyStatus(1);
