@@ -133,7 +133,7 @@ export default function Home(){
                     
                     <div className="team-items">
                         <div className="team-img team1">
-                            <img src="assets/img/team/t1.jpg" alt="" />
+                          
                         </div>
                         <div className="team-title">
                             <h3>Adan Meza</h3>
@@ -144,7 +144,7 @@ export default function Home(){
                     </div>
                     <div className="team-items">
                         <div className="team-img team2">
-                            <img src="assets/img/team/t2.jpg" alt="" />
+
                         </div>
                         <div className="team-title">
                             <h3>Raúl Salazar</h3>
@@ -155,7 +155,7 @@ export default function Home(){
                     </div>
                     <div className="team-items">
                         <div className="team-img team3">
-                            <img src="assets/img/team/t3.jpg" alt="" />    
+                        
                         </div>
                         <div className="team-title">
                             <h3>Luis Chávez</h3>

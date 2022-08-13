@@ -9,7 +9,7 @@ export const HomeStyle = styled.div`
                                 'embedded-opentype', and 'svg' */
     }
     header{
-        background-image:url('/assets/img/bg.jpg') ;
+        background-image:url('/assets/img/bg.jpg');
         height: 75vh;
         background-size: cover;
         background-repeat: no-repeat;
@@ -139,6 +139,7 @@ export const HomeStyle = styled.div`
         align-items: center;
         border-radius: 100%;
         cursor: pointer;
+        filter: grayscale(100%);
         img {
             width: 100%;
             filter: grayscale(100%);
@@ -159,6 +160,8 @@ export const HomeStyle = styled.div`
                 opacity: 0;
                 transition: all ease-in 0.3s;
             }   
+            transition: all ease-in 0.3s;
+            filter: grayscale(0%);    
             img {
                 transition: all ease-in 0.3s;
                 filter: grayscale(0%);    
@@ -315,10 +318,9 @@ export const HomeStyle = styled.div`
             
             background:transparent ;
             transition:all ease-in-out 0.2s ;
-            
             &:hover{
                     transition:all ease-in-out 0.2s ;
-                    background:url(/assets/img/team/t11.jpg) ;
+                    
                     background-position: center top;
                     background-repeat:no-repeat;
                     background-size:cover;
@@ -332,7 +334,7 @@ export const HomeStyle = styled.div`
             background-position: center -55px;
             &:hover{
                     transition:all ease-in-out 0.2s ;
-                    background:url(/assets/img/team/t22.jpg) ;
+                  
                     background-position: center top;
                     background-repeat:no-repeat;
                     background-size:cover;
@@ -341,22 +343,113 @@ export const HomeStyle = styled.div`
             
           
     }
-    .team3{
-            img{
+    .team1{
+            position: relative;
+            &:hover{
+                
+                    &:before{
+                        opacity:0;
+                        transition:all ease-in-out 0.6s ;
+                    }
+                }
+            &:before{
+                content:'';
+                width: 100%;
                 height: 100%;
+                position: absolute;
+                transition:all ease-in-out 0.5s ;
+                background:url("https://drive.google.com/uc?export=view&id=12Yamq5pbCUebieXA26bjJEOva0lAgl9K");
+                background-repeat:no-repeat;
+                background-size:cover;
+                z-index: 1;
+            }
+            &:after{
+                content:'';
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                transition:all ease-in-out 0.5s ;
+                background:url("https://drive.google.com/uc?export=view&id=1PTdZsdQTXU-NjJ1bGaD_dsk_L8jlpXrN");
+                background-repeat:no-repeat;
+                background-size:cover;
+                z-index: 0;
             }
             background:transparent ;
             transition:all ease-in-out 0.2s ;
             background-position: center -55px;
+    }
+    .team2{
+            position: relative;
             &:hover{
-                    transition:all ease-in-out 0.2s ;
-                    background:url(/assets/img/team/t33.jpg) ;
-                    background-position: center -55px;
-            background-repeat:no-repeat;
-            background-size:cover;
+                
+                    &:before{
+                        opacity:0;
+                        transition:all ease-in-out 0.6s ;
+                    }
+                }
+            &:before{
+                content:'';
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                transition:all ease-in-out 0.5s ;
+                background:url("https://drive.google.com/uc?export=view&id=1Gsr5_xzhrcHAK_sQXnEFWA5e6hQx_571");
+                background-repeat:no-repeat;
+                background-size:cover;
+                z-index: 1;
             }
-            
-            
+            &:after{
+                content:'';
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                transition:all ease-in-out 0.5s ;
+                background:url("https://drive.google.com/uc?export=view&id=1xpQV29cHbPUXizlCpJZipiNJNHnglprG");
+                background-position: center -55px;
+                background-repeat:no-repeat;
+                background-size:cover;
+                z-index: 0;
+            }
+            background:transparent ;
+            transition:all ease-in-out 0.2s ;
+            background-position: center -55px;
+    }
+    .team3{
+            position: relative;
+            &:hover{
+                
+                    &:before{
+                        opacity:0;
+                        transition:all ease-in-out 0.6s ;
+                    }
+                }
+            &:before{
+                content:'';
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                transition:all ease-in-out 0.5s ;
+                background:url("https://drive.google.com/uc?export=view&id=1YucZfOJcbs84Qqb5F2L2qbY9EJ9-o_yF");
+                background-position: center -55px;
+                background-repeat:no-repeat;
+                background-size:cover;
+                z-index: 1;
+            }
+            &:after{
+                content:'';
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                transition:all ease-in-out 0.5s ;
+                background:url("https://drive.google.com/uc?export=view&id=11gTrVeZbqhNAMQ3kpgynotqd_BJgm6hI");
+                background-position: center -55px;
+                background-repeat:no-repeat;
+                background-size:cover;
+                z-index: 0;
+            }
+            background:transparent ;
+            transition:all ease-in-out 0.2s ;
+            background-position: center -55px;
     }
     .team-title {
         margin: 20px 0;
@@ -466,8 +559,9 @@ export const ItemContainer = styled.div`
         a {color:#774e77};
     }
     .photos-container {
-        width: 100%;
+        width: 95%;
         display: flex;
+        margin:0 auto;;
         flex-direction: column;
         box-sizing: border-box;
         padding: 33px;
@@ -488,23 +582,32 @@ export const BtnBack = styled.div`
         font-size: 2em;
         left: 10px;
         top: 10px;
-        color: #fff;
+        
         border-radius: 100%;
-        border: 2px solid #4d144d;
+       
         width: 50px;
         height: 50px;
         display: flex;
         align-items: center;
         justify-content: center;
         text-decoration: none;
+        border: 2px solid #4d144d;
         background: #4d144d;
+        color: #fff;
+        transition: all ease-in 0.3s;
+        color: #4d144d;
+        border: 2px solid #4d144d;
+        background: transparent;
         a{
             color: inherit;
         }
         &:hover{
-            color: #b0b0b0;
-            border: 2px solid #b0b0b0;
+            
+            border: 2px solid #4d144d;
+            background: #4d144d;
+            color: #fff;
             transition: all ease-in 0.3s;
+            left: 5px;
         }
         button {
             background: none;
