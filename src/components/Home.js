@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
-import { Footer, HomeStyle, Team, Title } from '../styles/HomeStyle';
+import { CustomContainer, Footer, HomeStyle, Team, Title } from '../styles/HomeStyle';
 import ScrollButton from './helpers/ScrollButton';
 import { Link } from 'react-router-dom'
 import { useLocation } from "react-router-dom";
@@ -105,11 +105,12 @@ export default function Home(){
                                            { 
                                            
                                            <Link to={{pathname: `servicio/${service.name.toLowerCase()}`, hash:service.idser}} className="services-item-img">
-                                            <img src={service.bgimage} alt="" />
-                                            <div className="services-item-title">
-                                                <h3>{service.name}</h3>
-                                            </div>
-                                            <div className="animationbg"></div>
+                                            <CustomContainer className="item" bgI={service.bgimage}>
+                                                <div className="services-item-title">
+                                                    <h3>{service.name}</h3>
+                                                </div>
+                                                <div className="animationbg"></div>
+                                            </CustomContainer>
                                             </Link>
                                             }
                                         </div>
