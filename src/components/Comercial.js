@@ -2,7 +2,7 @@ import React,{useState, useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import { useLocation } from "react-router-dom";
 import axios from 'axios';
-import { BtnBack, CategoryCont, ItemContainer, PortadaBg } from '../styles/HomeStyle';
+import { BtnBack, CategoryCont, CustomContainer, CustomContainer2, ItemContainer, PortadaBg } from '../styles/HomeStyle';
 import { HashLink } from 'react-router-hash-link';
 export default function Comercial(){
     const [datacat, setDatacat] = useState([]);
@@ -35,15 +35,14 @@ export default function Comercial(){
                 <div key={category.idcat} className="item-container">
                     
                     <Link to={{pathname: `${nameService}/${category.name}`, hash: category.idcat}}>
-                        <div className="item">
+                        <CustomContainer2 className="item" bgI={category.bgimage}>
                             <div className="bg">
-                                <img src={category.bgimage} alt="" />
                                 <div className="label">
                                     <h1>{category.name.replaceAll('-', ' ')}</h1>
                                     <p>{category.desc}</p>
                                 </div>
                             </div>
-                        </div>
+                        </CustomContainer2>
                     </Link>
                 </div>
             )

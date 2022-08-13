@@ -430,6 +430,7 @@ export const ItemContainer = styled.div`
     .bg {
         position: relative;
         display: flex;
+        height:100% ;
         img {
             width: 100%;
             position: relative;
@@ -636,4 +637,20 @@ export const Title = styled.div`
             }
         }
     
+`;
+export const CustomContainer = styled.div`
+    width: 100%;
+    height: 300px;
+    background:url(${props => props.bgI});
+    background-repeat: no-repeat;
+    background-position: center 23%;
+    background-size: 100%;
+`;
+export const CustomContainer2 = styled.div`
+    width: 100%;
+    height: 300px;
+    background:url(${props => props.bgI});
+    background-repeat: no-repeat;
+    background-position: center 23%;
+    background-size: 100% 100%;
 `;

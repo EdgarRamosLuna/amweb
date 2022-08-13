@@ -56,9 +56,6 @@ export default function AddContent(props){
                 console.log(imgCont);
                 setPortada(1);
                 setNtfyStatus(prevState => !prevState);
-             
-                
-                
                 setTimeout(() => {
                     if(ntfyStatus === 1){
                         setNtfyStatus(1);
@@ -211,9 +208,7 @@ desc*/
             return false;
         }
         if(portada == 0){
-           
             setNoPor(true);
-            console.log(noPor);
             noBg();
                 setTimeout(() => {
                     if(noPor === false){

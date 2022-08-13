@@ -2,7 +2,7 @@ import React,{useState, useEffect} from 'react';
 import { Link, useParams, redirect, useNavigate } from 'react-router-dom'
 import { useLocation } from "react-router-dom";
 import axios from 'axios';
-import { BtnBack, ContentS, ItemContainer, PortadaBg } from '../styles/HomeStyle';
+import { BtnBack, ContentS, CustomContainer, ItemContainer, PortadaBg } from '../styles/HomeStyle';
 export default function Category(){
     const params = useParams();
     const location = useLocation()
@@ -65,15 +65,14 @@ export default function Category(){
                 <div key={category.idcont} className="item-container">
                     
                     <Link to={{pathname: `${nameService}/${name}`, hash:category.idcont}}>
-                        <div className="item">
+                        <CustomContainer className="item" bgI={category.portada}>
                             <div className="bg">
-                                <img src={category.portada} alt="" />
                                 <div className="label">
                                     <h1>{category.name.replaceAll('-', ' ')}</h1>
                                     <p>{category.desc}</p>
                                 </div>
                             </div>
-                        </div>
+                        </CustomContainer>
                     </Link>
                 </div>
             )
