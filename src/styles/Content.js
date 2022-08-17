@@ -7,7 +7,84 @@ export const ContentS = styled.div`
     padding:0 35px;
     margin-left:200px;
     padding-top: 25px;
-    
+    .btn-group button:nth-child(1){
+        color:transparent;
+        font-size: 0;
+        &:before{
+            content:'Inicio';
+            color: #fff;
+            width: 100%;
+            position: relative;
+            display: flex;
+            font-size: 20px;
+        }
+    }
+    .btn-group button:nth-child(2){
+        color:transparent;
+        font-size: 0;
+        &:before{
+            content:'<';
+            color: #fff;
+            width: 100%;
+            position: relative;
+            display: flex;
+            font-size: 20px;
+        }
+    }
+    .btn-group button:nth-child(4){
+        color:transparent;
+        font-size: 0;
+        display: none;
+        &:before{
+            content:'>';
+            color: #fff;
+            width: 100%;
+            position: relative;
+            display: flex;
+            font-size: 20px;
+        }
+       
+    }
+    .btn-group button:nth-child(5){
+        color:transparent;
+        font-size: 0;
+      
+        &:before{
+            content:'>';
+            color: #fff;
+            width: 100%;
+            position: relative;
+            display: flex;
+            font-size: 20px;
+        }
+    }
+    .btn-group button:nth-child(6){
+        color:transparent;
+        font-size: 0;
+        display: none;
+        &:before{
+            content:'>';
+            color: #fff;
+            width: 100%;
+            position: relative;
+            display: flex;
+            font-size: 20px;
+        }
+       
+    }
+    .btn-group button:nth-child(7){
+        color:transparent;
+        font-size: 0;
+        &:before{
+            content:'Final';
+            color: #fff;
+            width: 100%;
+            position: relative;
+            display: flex;
+            font-size: 20px;
+        }
+       
+    }
     .cat-container {
         display: flex;
         flex-direction: column;

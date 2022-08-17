@@ -5,47 +5,62 @@ import uniqid from 'uniqid';
 import CloudinaryUploadWidget from '../helpers/CloudinaryUploadWidget';
 import Notify from './Notify';
 import DrivePicker from '../helpers/DrivePicker';
+import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { TaskContext } from '../context/TaskContext';
 
-export default function AddContent(props){
-    const {removeImg, setImgCont, imgCont, dataCats, setDataCats, location, isPortada, ntfyStatus, setNtfyStatus, portada, isLocal, categorias, categoria, setCategoria} = useContext(TaskContext);
-    const {closeModal, newData} = props;
+export default function UpdateContent(props){
+    const {removeImg, setImgCont, imgCont, isPortada, ntfyStatus, setNtfyStatus, portada, isLocal, categorias, categoria, setCategoria} = useContext(TaskContext);
     const [titulo, setTitulo] = useState('');
-    const [file, setFile] = useState('');
     const [desc, setDesc] = useState('');
-    const handleModalContainerClick = (e) => e.stopPropagation();
+    
     const [noimg, setNoimg] = useState(false);
     const [isEmpty, setIsEmpty] = useState(false);
     const [noPor, setNoPor] = useState(false);
     const [fieldname, setFieldname] = useState(""); 
-    const hideModal = ()=>{
-        if(typeof(closeModal) == 'function'){
-            closeModal();
-        }
-    }
+    const idCont = useParams();
+    const [dataCont, setDataCont] = useState([]);
+    const [dataPhot, setDataPhot] = useState([]);
     const [idcont, setIdcont] = useState();
-    const saveFile = (e) => {
-        setFile(e.target.files[0]);
-        
-    };
+
     useEffect(() => {
         setImgCont([]);
-        axios.get('https://amfotografiatest.herokuapp.com/api/category/getdata').then(res =>{
-            console.log(res.data);
-            setDataCats(res.data);
+        axios.post('https://amfotografiatest.herokuapp.com/api/content/getcontbyid', idCont).then(res =>{
+          //  console.log(res.data);
+            setDataCont(res.data);
+            setTitulo(res.data[0].name);
+            setDesc(res.data[0].desc);
+            setCategoria(res.data[0].idcat);
+            axios.post('https://amfotografiatest.herokuapp.com/api/photos/getdatabyid', idCont).then(res =>{
+             //   console.log(res.data);
+                const dataImg = res.data;
+                setDataPhot(dataImg);
+                for (let i = 0; i < dataImg.length; i++) {
+                        const dataPho = dataImg[i];
+                       /* https://drive.google.com/uc?export=view&id=
+https://drive.google.com/thumbnail?id=*/
+                        const tumbanil = dataPho['img'].replaceAll("https://drive.google.com/uc?export=view&id=", "");
+                        setImgCont(prevImages => ([...prevImages, { 'idimg': dataPho['idimg'], 'img': dataPho['img'], 'idcont':dataPho['idcont'], 'portada': dataPho['portada'], "tumbnail":`${isLocal ? `https://drive.google.com/uc?export=view&id=${tumbanil}`:`https://drive.google.com/thumbnail?id=${tumbanil}`}`}]));
+                     //  console.log(tumbanil);
+                }
+                
+                
+            }).catch(err =>{
+                console.log(err);
+            });
+            
         }).catch(err =>{
             console.log(err);
         });
+        
+
+    
    //     return () => console.log("Cleanup..");
     }, []);
  
-   const initialState = {
-    idimg: "",
-    img: "",
-    idcont: null,
-    portada: 0,
-   };
+    
     const [isBrowser, setIsBrowser] = useState(null);
+   
     const getImg = useCallback((img, tumb) =>{
         //setSetimages(images => [...images, img]);
         //arrayImg.push({'idimg':uniqid(),'img':img, 'idcont':'', 'portada':0});
@@ -56,6 +71,7 @@ export default function AddContent(props){
         if (navigator.userAgent.includes("Chrome")) {
             setIsBrowser('Chrome');
         }
+
         if(img.length > 0){
             setImgCont(prevImages => ([...prevImages, { 'idimg': uniqid(), 'img': img, 'idcont': '', 'portada': 0, 'tumbnail':`${isLocal ? img:tumb}`}]));
         }
@@ -88,18 +104,12 @@ export default function AddContent(props){
                 i.classList.add('no-por');
             }
     }
-    const bgAdd = () =>{
     
-        const ic = document.querySelectorAll(".fa-circle-check");
-        for (const i of ic) {
-            i.classList.remove('no-por');
-        }
-    }
     const guardarCategoria = () =>{
         
         
         let content = {
-            idcont:uniqid(),
+            idcont:idCont['idcont'],
             name: titulo.replaceAll(' ', '-'),
             idcat: categoria,
             desc:desc,
@@ -195,14 +205,15 @@ desc*/
             return false;
         }
         setIdcont(content.idcont);
-        axios.post('https://amfotografiatest.herokuapp.com/api/content/add', content)
+        axios.post('https://amfotografiatest.herokuapp.com/api/content/update', content)
         .then(res => {
             alert(res.data);
             
             for (let i = 0; i < imgCont.length; i++) {
                 imgCont[i].idcont = content.idcont;
+                console.log(content.idcont);
             }
-            axios.post('https://amfotografiatest.herokuapp.com/api/photos/add', imgCont)
+            axios.post('https://amfotografiatest.herokuapp.com/api/photos/update', imgCont)
             .then(res => {
                 alert(res.data);
                 
@@ -210,15 +221,13 @@ desc*/
         })
             
         }
-      /*  const imgcontenido = arrayImg.map(imgs =>{
-                return(
-                    <>
-                        <div className="img-album"><div className="select-bg"><i class="fa-solid fa-circle-check"></i></div> <img src={imgs.img} alt="" /></div>
-                    </>
-                );
-        });*/
-
-        
+        const deleteTest = () =>{
+            axios.post('https://amfotografiatest.herokuapp.com/api/photos/update', imgCont)
+            .then(res => {
+                alert(res.data);
+                
+            })
+        }
         return(
             <>
                 {ntfyStatus ? <Notify closeModal={()=> setNtfyStatus(prevState => !prevState)}>Portada seleccionada</Notify> : ""}
@@ -227,9 +236,10 @@ desc*/
                 {noPor ? <Notify closeModal={()=> setNoPor(prevState => !prevState)}>Debes seleccionar una imagen de portada para continuar.</Notify> : ""}
                 <ContentS>
                 
-                    <div className="modal-container" onClick={handleModalContainerClick}>
+                    <div className="modal-container">
                         <h1>Agregar Nuevo Album</h1>
                         <div className="cat-container">
+                         
                             <div className="cat-form">
                                 <div className="cat-form-input">
                                     <label htmlFor="titulo">Titulo del album</label>
@@ -243,6 +253,7 @@ desc*/
                                     <label htmlFor="titulo">Categoria</label>
                                     <select 
                                         value={categoria} 
+                                        defaultValue={categoria}
                                         onChange={(e) => {setCategoria(e.target.value); 
                                         if(e.target.value !== 0){
                                             removeFocus("categoria");
@@ -253,7 +264,7 @@ desc*/
                                         id="categoria"
                                         
                                         >
-                                        <option value="0" selected>Selecciona una categoria</option>
+                                        <option value="0">Selecciona una categoria</option>
                                         {categorias}
                                     </select>
                                 </div>

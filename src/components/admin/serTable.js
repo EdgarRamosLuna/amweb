@@ -48,7 +48,7 @@ export default function SerTable(props) {
   const borrarCat = (idcat) =>{
     let isDelete = window.confirm(`Estas seguro de eliminar el registro con el id '${idcat}'`);
     let hola = 1;
-        if(hola ==1){
+        if(isDelete){
             axios.post('https://amfotografiatest.herokuapp.com/api/service/deleteser', {idser:idcat})
             .then(res => {
               setDataCategoria(prev=>{

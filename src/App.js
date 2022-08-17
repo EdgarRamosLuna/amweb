@@ -13,6 +13,7 @@ import AddContent from './components/admin/AddContent';
 import Albums from './components/Albums';
 import Services from './components/admin/Services';
 import AddService from './components/admin/AddService';
+import UpdateContent from './components/admin/UpdateContent';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route exact path="categorias/add" element={<AddCategory />} />
         <Route exact path="albums" element={<Content />} />
         <Route exact path="albums/add" element={<AddContent />} />
+        <Route exact path="albums/update/:idcont" element={<UpdateContent />} />
         <Route exact path="/dashboard/servicios" element={<Services />} />
         <Route exact path="/dashboard/servicios/add" element={<AddService />} />
       </Route>

@@ -3,10 +3,8 @@ import styled from "styled-components";
 export const HomeStyle = styled.div`
    // cursor: url(/assets/img/cursor.cur), auto;
     @font-face {
-    font-family: 'AM';
-    src:url(/assets/fonts/nouvelle_vague_final.ttf);
-    /* other formats include: 'woff2', 'truetype, 'opentype',
-                                'embedded-opentype', and 'svg' */
+        font-family: 'AM';
+        src:url(/assets/fonts/nouvelle_vague_final.ttf);
     }
     header{
         background-image:url('/assets/img/bg.jpg');
@@ -620,10 +618,11 @@ export const PortadaBg = styled.div`
         width: 100%;
         height: 70vh;
         background-image:url(${props => props.bg});
-        background-position: center ${props => (props.h >= 4000  ? `${props.h / 100}%`:`${props.h / 200}%`)};
+        background-position: center ${props => (props.h >= 4000  ? `${props.h / 70}%`:`${props.h / 100}%`)};
         background-repeat: no-repeat;
         background-size: cover;
         position: relative;
+        background-attachment: fixed;
         &::before{
             content: '${props => props.title}';
             position: absolute;

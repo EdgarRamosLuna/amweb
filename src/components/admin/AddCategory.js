@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Button, ModalCat } from '../../styles/Categories';
 import axios from 'axios';
 import uniqid from 'uniqid';
+import { TaskContext } from '../context/TaskContext';
 export default function AddCategory(props){
+    const {handleModalContainerClick,} = useContext(TaskContext);
     const {closeModal, newData} = props;
     const [titulo, setTitulo] = useState('');
     const [servicio, setServicio] = useState();
     const [file, setFile] = useState();
     const [desc, setDesc] = useState('');
-    const handleModalContainerClick = (e) => e.stopPropagation();
     const hideModal = ()=>{
         if(typeof(closeModal) == 'function'){
             closeModal();
@@ -105,8 +106,6 @@ export default function AddCategory(props){
                                             <>
                                                 <option value={service.idser}>{service.name}</option>
                                             </>
-                                            
-
                                         )
                                     }
                                     

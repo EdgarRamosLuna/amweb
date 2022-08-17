@@ -12,6 +12,21 @@ export const DashboardS = styled.div`
 `;
 export const MenuDash = styled.div`
     display: flex;
+    .removeImg {
+        position: absolute;
+        right: 0;
+        top: -24px;
+        background: #553855;
+        color: #fff;
+        width: 100%;
+        display: flex;
+        justify-content: end;
+        padding: 0;
+        padding-right: 0px;
+        height: 25px;
+        align-items: center;
+        padding-right: 10px;
+    }
     a {
         text-decoration: none;
     }

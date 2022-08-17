@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Button, ModalCat } from '../../styles/Categories';
 import axios from 'axios';
+import { TaskContext } from '../context/TaskContext';
+
 export default function UpdateService(props){
+    const {handleModalContainerClick} = useContext(TaskContext);
     const {closeModal, idSer, newData} = props;
     const [name , setName] = useState();
     const [service, setService] = useState();
@@ -16,7 +19,6 @@ export default function UpdateService(props){
     useEffect(() => {
         axios.post('https://amfotografiatest.herokuapp.com/api/service/getserdata', {idser: idSer}).then(res =>{
             const serviceData = res.data[0];
-            
             setName(serviceData.name.replaceAll('-', ' '));
             setService(serviceData.service);
             setImgBg(serviceData.bgimage);
@@ -25,7 +27,6 @@ export default function UpdateService(props){
             console.log(err);
         });
       }, []);
-    const handleModalContainerClick = (e) => e.stopPropagation();
     const hideModal = ()=>{
         if(typeof(closeModal) == 'function'){
             closeModal();

@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, ModalCat } from '../../styles/Categories';
 import axios from 'axios';
 import uniqid from 'uniqid';
+import { TaskContext } from '../context/TaskContext';
 export default function AddService(props){
+    const {handleModalContainerClick,} = useContext(TaskContext);
     const {closeModal, newData} = props;
     const [titulo, setTitulo] = useState('');
     const [file, setFile] = useState();
     const [desc, setDesc] = useState('');
-    const handleModalContainerClick = (e) => e.stopPropagation();
     const hideModal = ()=>{
         if(typeof(closeModal) == 'function'){
             closeModal();

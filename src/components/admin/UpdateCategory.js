@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Button, ModalCat } from '../../styles/Categories';
 import axios from 'axios';
+import { TaskContext } from '../context/TaskContext';
 export default function UpdateCategory(props){
+    const {handleModalContainerClick} = useContext(TaskContext);
     const {closeModal, idCat, newData} = props;
     const [name , setName] = useState();
     const [service, setService] = useState();
@@ -30,7 +32,6 @@ export default function UpdateCategory(props){
             console.log(err);
         });
       }, []);
-    const handleModalContainerClick = (e) => e.stopPropagation();
     const hideModal = ()=>{
         if(typeof(closeModal) == 'function'){
             closeModal();
