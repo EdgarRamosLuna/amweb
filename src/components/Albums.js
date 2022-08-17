@@ -8,11 +8,11 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 export default function Albums(){
     const params = useParams();
-    const location = useLocation()
-    const hash  = location.hash;
+    const location = useLocation();
+    const hash  = location.state;
+    const idcont = hash.id;
     const navigate = useNavigate();
-    const idcont = hash.replaceAll('#', '');
-
+    console.log(location);
     const [datacat, setDatacat] = useState([]);
     const [datapho, setDatapho] = useState([]);
     const [datapor, setDatapor] = useState([]);

@@ -6,10 +6,9 @@ import { BtnBack, ContentS, CustomContainer, ItemContainer, PortadaBg } from '..
 export default function Category(){
     const params = useParams();
     const location = useLocation()
-    const hash  = location.hash;
+    const hash  = location.state;
+    const catId = hash.id;
 
-    const catId = hash.replaceAll('#', '');
-    
     const [datacat, setDatacat] = useState([]);
     const [datapho, setDatapho] = useState([]);
     const [datapor, setDatapor] = useState([]);
@@ -55,7 +54,7 @@ export default function Category(){
         
           
       }, []);
-
+    
     const listacont = datacat.map(category =>{
         let name = category.name.replaceAll(' ', '-').toLowerCase();
         if(name.includes("+")){
@@ -64,7 +63,7 @@ export default function Category(){
         return(
                 <div key={category.idcont} className="item-container">
                     
-                    <Link to={{pathname: `${nameService}/${name}`, hash:category.idcont}}>
+                    <Link to={{pathname: `${nameService}/${name}`,}} state={{id: category.idcont}} >
                         <CustomContainer className="item" bgI={category.portada}>
                             <div className="bg">
                                 <div className="label">
@@ -91,9 +90,8 @@ export default function Category(){
     return(
         <>
             <ItemContainer>
-            <BtnBack><button onClick={()=> navigate(-1)}   className="btnBack"><i className="fa-solid fa-arrow-left"></i></button ></BtnBack>
+            {/*<BtnBack><button onClick={()=> navigate(-1)}   className="btnBack"><i className="fa-solid fa-arrow-left"></i></button ></BtnBack>*/}
             <PortadaBg bg={bgI} title={title} h={imgh} w={imgw}></PortadaBg>
-        
             <div className="items-container">
                 {listacont}
             </div>        

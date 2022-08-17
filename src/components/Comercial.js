@@ -11,10 +11,12 @@ export default function Comercial(){
     const [service, setService] = useState();
     const [imgBg, setImgBg] = useState();
     const location = useLocation()
-    const hash  = location.hash;
+
     const navigate = useNavigate();
-    const catId = hash.replaceAll('#', '');
+    const hash  = location.state;
+    const catId = hash.id;
     const nameService = location.pathname.toLowerCase();
+    console.log(location);
     useEffect(() => {
         axios.post('https://amfotografiatest.herokuapp.com/api/category/getcatbyser', {service: catId}).then(res =>{
             const categoryData = res.data;
@@ -34,7 +36,7 @@ export default function Comercial(){
         return(
                 <div key={category.idcat} className="item-container">
                     
-                    <Link to={{pathname: `${nameService}/${category.name}`, hash: category.idcat}}>
+                    <Link to={{pathname: `${nameService}/${category.name}`}}  state={{id: category.idcat}}>
                         <CustomContainer2 className="item" bgI={category.bgimage}>
                             <div className="bg">
                                 <div className="label">
@@ -57,6 +59,7 @@ export default function Comercial(){
      });
     const bgI = datser;
     img.src = datser;
+    
     const title = nameService.replaceAll("servicio", "").replaceAll("/", "");
     return(
 

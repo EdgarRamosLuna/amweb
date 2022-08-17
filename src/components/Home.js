@@ -65,7 +65,7 @@ export default function Home(){
                 items: 7,
             },
             1600: {
-                items: 9,
+                items: 8,
 
             }
         },
@@ -80,7 +80,6 @@ export default function Home(){
                     <div className="menu-items">
                         <ul>
                             <li><a href="#" onClick={(e)=> handleClick( e, ser)}>Servicios</a></li>
-                            
                             <li><a href="#" onClick={(e)=> handleClick( e, tea)}>Team</a></li>
                             <li><a href="#" onClick={(e)=> handleClick( e, cli)}>Clientes</a></li>
                             <li><a href="#" onClick={(e)=> handleClick( e, cot)}>Cotiza</a></li>
@@ -104,7 +103,7 @@ export default function Home(){
                                         <div>
                                            { 
                                            
-                                           <Link to={{pathname: `servicio/${service.name.toLowerCase()}`, hash:service.idser}} className="services-item-img">
+                                           <Link to={{pathname: `servicio/${service.name.toLowerCase()}`,}} state={{id: service.idser}} className="services-item-img">
                                             <CustomContainer className="item" bgI={service.bgimage}>
                                                 <div className="services-item-title">
                                                     <h3>{service.name}</h3>
@@ -177,32 +176,30 @@ export default function Home(){
                     <div className="clients-slider">
                         <OwlCarousel className="owl-theme" {...options}>
                                         <div className="slider-item">
-                                            <img src="assets/img/logos/01.png" alt="" />
+                                            <img src="https://drive.google.com/uc?export=view&id=1F7ZIBH0HcZamNuqhtOi-3--SUTK2KCCg" alt="" />
                                         </div>
                                         <div className="slider-item">
-                                            <img src="assets/img/logos/02.png" alt="" />
+                                            <img src="https://drive.google.com/uc?export=view&id=1-khTxebk-aABRFyDhEZWew_4Mom83Kda" alt="" />
                                         </div>
                                         <div className="slider-item">
-                                            <img src="assets/img/logos/03.png" alt="" />
+                                            <img src="https://drive.google.com/uc?export=view&id=1mpZYUGcnW5PfINsZJM0fcjwlLF0__eEr" alt="" />
                                         </div>
                                         <div className="slider-item">
-                                            <img src="assets/img/logos/04.png" alt="" />
+                                            <img src="https://drive.google.com/uc?export=view&id=1kOwWdFC18rqEtPJz_etvNcgm3mLWuI-S" alt="" />
                                         </div>
                                         <div className="slider-item">
-                                            <img src="assets/img/logos/05.png" alt="" />
+                                            <img src="https://drive.google.com/uc?export=view&id=1d8CtZymxANy2TvYG77flEKNUNS921SQn" alt="" />
                                         </div>
                                         <div className="slider-item">
-                                            <img src="assets/img/logos/06.png" alt="" />
+                                            <img src="https://drive.google.com/uc?export=view&id=1pAOEnO1bCG-A2bcVlM4SHhWvcPgstVYp" alt="" />
                                         </div>
                                         <div className="slider-item">
-                                            <img src="assets/img/logos/07.png" alt="" />
+                                            <img src="https://drive.google.com/uc?export=view&id=1MEkgHVMRBnrAX9bL5b3uHaYxY0KKiasq" alt="" />
                                         </div>
                                         <div className="slider-item">
-                                            <img src="assets/img/logos/08.png" alt="" />
+                                            <img src="https://drive.google.com/uc?export=view&id=1dYFDKIIlSA0hkeIhgIj5BbSwkO7UbSvn" alt="" />
                                         </div>
-                                        <div className="slider-item">
-                                            <img src="assets/img/logos/09.png" alt="" />
-                                        </div>
+                                    
                         </OwlCarousel>  
                     </div>
                 </div>
