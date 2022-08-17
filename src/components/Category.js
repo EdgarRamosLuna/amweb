@@ -1,8 +1,9 @@
-import React,{useState, useEffect} from 'react';
+import React,{useState, useEffect, useContext} from 'react';
 import { Link, useParams, redirect, useNavigate } from 'react-router-dom'
 import { useLocation } from "react-router-dom";
 import axios from 'axios';
 import { BtnBack, ContentS, CustomContainer, ItemContainer, PortadaBg } from '../styles/HomeStyle';
+import { TaskContext } from './context/TaskContext';
 export default function Category(){
     const params = useParams();
     const location = useLocation()
@@ -87,9 +88,11 @@ export default function Category(){
     const bgI = datapor;
     img.src = datapor;
     const title = params.name.replaceAll('-', ' ');
+    const {HeaderFront} = useContext(TaskContext);
     return(
         <>
             <ItemContainer>
+            <HeaderFront></HeaderFront>
             {/*<BtnBack><button onClick={()=> navigate(-1)}   className="btnBack"><i className="fa-solid fa-arrow-left"></i></button ></BtnBack>*/}
             <PortadaBg bg={bgI} title={title} h={imgh} w={imgw}></PortadaBg>
             <div className="items-container">

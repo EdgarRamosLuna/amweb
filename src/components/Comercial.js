@@ -1,9 +1,10 @@
-import React,{useState, useEffect} from 'react';
+import React,{useState, useEffect, useContext} from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import { useLocation } from "react-router-dom";
 import axios from 'axios';
 import { BtnBack, CategoryCont, CustomContainer, CustomContainer2, ItemContainer, PortadaBg } from '../styles/HomeStyle';
 import { HashLink } from 'react-router-hash-link';
+import { TaskContext } from './context/TaskContext';
 export default function Comercial(){
     const [datacat, setDatacat] = useState([]);
     const [datser, setDatser] = useState([]);
@@ -31,13 +32,24 @@ export default function Comercial(){
             console.log(err);
         });
       }, []);
+
+    const img = new Image();
+    const [imgw, setImgw] = useState();
+    const [imgh, setImgh] = useState();
+    img.addEventListener("load", () => {
+            //console.log(, img.naturalHeight);
+            setImgw(img.naturalWidth);
+            setImgh(img.naturalHeight);
+     });
+    const bgI = datser;
+    img.src = datser;
     const listacat = datacat.map(category =>{
         
         return(
                 <div key={category.idcat} className="item-container">
                     
                     <Link to={{pathname: `${nameService}/${category.name}`}}  state={{id: category.idcat}}>
-                        <CustomContainer2 className="item" bgI={category.bgimage}>
+                        <CustomContainer2 className="item" bgI={category.bgimage} >
                             <div className="bg">
                                 <div className="label">
                                     <h1>{category.name.replaceAll('-', ' ')}</h1>
@@ -49,22 +61,15 @@ export default function Comercial(){
                 </div>
             )
     });
-    const img = new Image();
-    const [imgw, setImgw] = useState();
-    const [imgh, setImgh] = useState();
-    img.addEventListener("load", () => {
-            //console.log(, img.naturalHeight);
-            setImgw(img.naturalWidth);
-            setImgh(img.naturalHeight);
-     });
-    const bgI = datser;
-    img.src = datser;
+    
     
     const title = nameService.replaceAll("servicio", "").replaceAll("/", "");
+    const {HeaderFront} = useContext(TaskContext);
     return(
 
         <ItemContainer>
-            <BtnBack><HashLink  to={{pathname: "/", hash: "#servicios"}} className="btnBack"><i className="fa-solid fa-arrow-left"></i></HashLink ></BtnBack>
+        <HeaderFront></HeaderFront>    
+            {/*<BtnBack><HashLink  to={{pathname: "/", hash: "#servicios"}} className="btnBack"><i className="fa-solid fa-arrow-left"></i></HashLink ></BtnBack>*/}
         <PortadaBg bg={bgI} title={title} w={imgw} h={imgh}></PortadaBg>
         <div className="items-container">
             {listacat}

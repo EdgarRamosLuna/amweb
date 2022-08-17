@@ -286,7 +286,7 @@ export const ContentS = styled.div`
 export const Button = styled.button`
         height: 40px;
         align-items: center;
-        background: #553855;
+        background: #000;
         list-style: none;
         display: flex;
         padding: 0 25px;

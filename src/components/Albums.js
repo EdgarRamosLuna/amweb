@@ -1,11 +1,12 @@
-import React,{useState, useEffect} from 'react';
+import React,{useState, useEffect, useContext} from 'react';
 import { Link, useParams, redirect, useNavigate } from 'react-router-dom'
 import { useLocation } from "react-router-dom";
 import axios from 'axios';
-import { BtnBack, ContentS, ItemContainer, PortadaBg } from '../styles/HomeStyle';
+import { BtnBack, ContentS, ImgAlbum, ItemContainer, PortadaBg } from '../styles/HomeStyle';
 //import ImageRenderer from './helpers/ImageRenderer';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { TaskContext } from './context/TaskContext';
 export default function Albums(){
     const params = useParams();
     const location = useLocation();
@@ -56,21 +57,7 @@ export default function Albums(){
           
       }, []);
 
-    const listacont = datacat.map(photos =>{
-  
-        return(
-                /*<ImageRenderer
-                    key={photos.idimg}
-                    url={photos.img}
-                    width={photos.width}
-                    height={photos.height}
-                />*/
-                <LazyLoadImage
-                effect="blur"
-                src={photos.img} />
-                
-            )
-    });
+    
     
     const img = new Image();
     const [imgw, setImgw] = useState();
@@ -83,10 +70,55 @@ export default function Albums(){
     const bgI = datapor;
     img.src = datapor;
     const title = params.name.replaceAll('-', ' ');
+    const {HeaderFront} = useContext(TaskContext);
+    var imgwi = [];
+    var imghi;
+    var imgwStatus = 0;
+    const listacont = datacat.map((photos, index) =>{
+       
+     //   console.log(index);
+       /* img2.addEventListener("load", () => {
+                //console.log(, img.naturalHeight);
+                imgwi.push(img.naturalWidth);
+
+            //    imghi = img.naturalHeight;
+                imghi = img.naturalHeight;
+                if(imgwi <= 720){
+                    imgwStatus = 1;
+                }
+                
+                
+              //  console.log(imgwi)
+                
+        });*/
+       // console.log(imghi);
+       // console.log(imgwStatus)
+        const img2 = new Image();
+        img2.src = photos.img;
+        const nw = img2.naturalWidth;
+        return(
+                <ImgAlbum w={nw} h={100}>
+                    <LazyLoadImage
+                    effect="blur"
+                    src={photos.img} />
+                   
+                </ImgAlbum>
+                /*<ImageRenderer
+                    key={photos.idimg}
+                    url={photos.img}
+                    width={photos.width}
+                    height={photos.height}
+                />*/
+                
+                
+            )
+    });
     return(
         <>
             <ItemContainer>
-            <BtnBack><button onClick={()=> navigate(-1)} className="btnBack"><i className="fa-solid fa-arrow-left"></i></button ></BtnBack>
+            
+            <HeaderFront></HeaderFront>
+            {/*<BtnBack><button onClick={()=> navigate(-1)} className="btnBack"><i className="fa-solid fa-arrow-left"></i></button ></BtnBack>*/}
             <PortadaBg bg={bgI} title={title} w={imgw} h={imgh}></PortadaBg>
         
             <div className="photos-container">

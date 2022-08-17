@@ -1,6 +1,9 @@
 import axios from 'axios';
 import React, {createContext, useState, useEffect, useCallback} from 'react'
+import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
+import { HomeStyle } from '../../styles/HomeStyle';
 
 export const TaskContext = createContext();
 export function TaskContextProvider(props){
@@ -14,6 +17,31 @@ export function TaskContextProvider(props){
   const location = useLocation();
   const handleModalContainerClick = (e) => e.stopPropagation();
   const [dataCategoria, setDataCategoria] = useState([]);
+  
+  const HeaderFront = () =>{
+    return (
+      <HomeStyle>
+        <div className="menu m2">
+            <div className="logo">
+                <div className="logo-img">
+                  <a href="#">AM</a>
+                </div>
+                <div className="menu-items-cont">
+                  <div className="menu-items">
+                    <ul>
+                        <li><HashLink to={{pathname: "/", hash: "#"}} >Inicio</HashLink></li>
+                        <li><HashLink to={{pathname: "/", hash: "#servicios"}}>Servicios</HashLink></li>
+                        <li><HashLink to={{pathname: "/", hash: "#team"}}>Team</HashLink></li>
+                        <li><HashLink to={{pathname: "/", hash: "#clientes"}}>Clientes</HashLink></li>
+                        <li><HashLink to={{pathname: "/", hash: "#cotiza"}}>Cotiza</HashLink></li>
+                    </ul>
+                  </div>
+              </div>
+            </div>
+        </div>
+      </HomeStyle>
+    )
+  }
   useEffect(() => {
     
     axios.get('https://amfotografiatest.herokuapp.com/api/category/getcatdatabyid').then(res =>{
@@ -114,7 +142,8 @@ const borrarCat = (idcat) =>{
                 handleModalContainerClick,
                 borrarCat,
                 dataCategoria,
-                setDataCategoria
+                setDataCategoria,
+                HeaderFront
             }
         }>
         {children}

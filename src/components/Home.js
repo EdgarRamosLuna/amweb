@@ -73,17 +73,21 @@ export default function Home(){
     return(
         <HomeStyle>
             <header>
-                <div className="menu">
+                <div className="menu m2">
                     <div className="logo">
+                        <div className="logo-img">
                         <a href="#">AM</a>
+                        </div>
+                        <div className="menu-items-cont">
+                        <div className="menu-items">
+                            <ul>
+                                <li><a href="#" onClick={(e)=> handleClick( e, ser)}>Servicios</a></li>
+                                <li><a href="#" onClick={(e)=> handleClick( e, tea)}>Team</a></li>
+                                <li><a href="#" onClick={(e)=> handleClick( e, cli)}>Clientes</a></li>
+                                <li><a href="#" onClick={(e)=> handleClick( e, cot)}>Cotiza</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <div className="menu-items">
-                        <ul>
-                            <li><a href="#" onClick={(e)=> handleClick( e, ser)}>Servicios</a></li>
-                            <li><a href="#" onClick={(e)=> handleClick( e, tea)}>Team</a></li>
-                            <li><a href="#" onClick={(e)=> handleClick( e, cli)}>Clientes</a></li>
-                            <li><a href="#" onClick={(e)=> handleClick( e, cot)}>Cotiza</a></li>
-                        </ul>
                     </div>
                 </div>
             </header>
@@ -122,7 +126,7 @@ export default function Home(){
                     </div>
                 </div>
             </div>
-            <div className="team" ref={tea}>
+            <div className="team" ref={tea} id="team">
                 <Title>
                         <div className="clients-title">
                             <h1>Team</h1>
@@ -166,7 +170,7 @@ export default function Home(){
                 </div>
 
             </div>
-            <div className="clients" ref={cli}>
+            <div className="clients" ref={cli} id="clientes">
                 <div className="clients-content" >
                     <Title>
                         <div className="clients-title">
@@ -204,7 +208,7 @@ export default function Home(){
                     </div>
                 </div>
             </div>
-            <div ref={cot}>
+            <div ref={cot} id="cotiza">
                 <Form  />
             </div>
             <Footer>

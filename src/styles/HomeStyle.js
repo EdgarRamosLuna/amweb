@@ -20,22 +20,25 @@ export const HomeStyle = styled.div`
         margin-right: 0;
         margin-left: auto;
         align-items: center;
-        padding-top:15px;
     }
     .logo {
-        width: 100px;
-        height: 100px;
+        width:auto ;
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 2px solid #ffffff7d;
-        border-radius: 100%;
-        box-sizing: border-box;
-        position: relative;
-        left: 10px;
-        background: transparent;
-        z-index: 2;
-        background: #fff;
+        margin-top: 136px;
+        transition:all 0.3s;
+        cursor: pointer;
+        &:hover{
+            .menu-items {
+                transition:all 0.3s;
+                transform: translateX(0%);
+            }
+            .menu-items-cont{
+                left: 0%;
+            }
+        }
         a {
             text-decoration: none;
             color: #000;
@@ -47,11 +50,31 @@ export const HomeStyle = styled.div`
             letter-spacing: 0.5px;
         }
     }
+    .logo-img{
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #ffffff7d;
+        border-radius: 0%;
+        box-sizing: border-box;
+        position: relative;
+        left: 0px;
+        background: transparent;
+        z-index: 2;
+        background: #fff;
+    }
     .menu-items {
+        transform: translateX(-100%);
+        position: relative;
         width: auto;
         border: 1px solid #ffffff5e;
         margin: 0; 
         border-left: 0;
+        transition:all 0.3s;
+        background: rgba(255, 255, 255, 0.75);
         ul {
         display: flex;
         align-items: center;
@@ -69,7 +92,7 @@ export const HomeStyle = styled.div`
         }
         li a {
             text-decoration: none;
-            color: #fff;
+            color: #000;
             font-family: 'Open Sans';
             font-style: normal;
             font-weight: 400;
@@ -463,6 +486,17 @@ export const HomeStyle = styled.div`
         white-space: pre-line;
         font-size: 16px;
     }
+    .menu.m2 {
+        position: fixed;
+        z-index: 9;
+    }
+    .menu-items-cont{
+        width: auto;
+        position: relative;
+        overflow-x: hidden;
+        left: -100%;
+        transition:all 0.3s;
+    }
 `;
 export const Button = styled.div`
    position: fixed; 
@@ -557,12 +591,15 @@ export const ItemContainer = styled.div`
         a {color:#774e77};
     }
     .photos-container {
-        width: 95%;
+        width: 90%;
         display: flex;
         margin:0 auto;;
-        flex-direction: column;
+        flex-direction: row;
         box-sizing: border-box;
         padding: 33px;
+        flex-wrap:wrap ;
+        justify-content: center;
+        
         img{
             width:100%;
         }
@@ -746,7 +783,7 @@ export const CustomContainer = styled.div`
     background:url(${props => props.bgI});
     background-repeat: no-repeat;
     background-position: center 23%;
-    background-size: 100%;
+    background-size: 100% 100%;
 `;
 export const CustomContainer2 = styled.div`
     width: 100%;
@@ -755,4 +792,22 @@ export const CustomContainer2 = styled.div`
     background-repeat: no-repeat;
     background-position: center 23%;
     background-size: 100% 100%;
+`;
+export const ImgAlbum = styled.div`
+
+    
+    width: ${props => props.w <= 720 ? "50%":"100%"};
+    display: flex;
+    justify-content: ${props => props.w <= 720 ? "space-around":"center"};
+    padding: 0 16.5px;
+    box-sizing:border-box;
+
+
+        //justify-content: ${props => props.w <= 720 ? "start":"center"};
+    
+    span{
+        width: 100%;
+        width: ${props => props.w <= 720 ? "100%":"100%"};
+        
+    }
 `;

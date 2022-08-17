@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const FromS = styled.div`
     width: 100%;
     height: auto;
-    background-image:url(/assets/img/team/t11.jpg) ;
+    background-color:#fff;
+   // background-image:url(/assets/img/team/t11.jpg) ;
     background-position:center 69%;
     background-repeat:no-repeat ;
     background-size:cover;
@@ -26,7 +27,7 @@ export const FromS = styled.div`
         box-sizing: border-box;
         padding: 55px;
         margin: 33px 0;
-        background-color: rgba(255, 255, 255, 0.69);
+        background-color: #fff;
      /*   &:before{
             content:'';
             position: absolute;
@@ -48,7 +49,7 @@ export const FromS = styled.div`
             width: 100%;
             margin: 10px 0;
             background: transparent;
-            border: 4px solid #553855;
+            border: 4px solid #000;
             padding: 10px;
             box-sizing: border-box;
             outline: none;
