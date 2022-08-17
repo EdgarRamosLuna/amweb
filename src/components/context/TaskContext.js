@@ -24,7 +24,7 @@ export function TaskContextProvider(props){
         <div className="menu m2">
             <div className="logo">
                 <div className="logo-img">
-                  <a href="#">AM</a>
+                  <HashLink to={{pathname: "/", hash: "#"}} >AM</HashLink>
                 </div>
                 <div className="menu-items-cont">
                   <div className="menu-items">

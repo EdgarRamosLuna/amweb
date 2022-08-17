@@ -11,6 +11,7 @@ import Form from './Form';
 import axios from 'axios';
 
 export default function Home(){
+    const home = useRef(null);
     const ser = useRef(null);
     const cli = useRef(null);
     const tea = useRef(null);
@@ -71,12 +72,12 @@ export default function Home(){
         },
     };
     return(
-        <HomeStyle>
+        <HomeStyle ref={home}>
             <header>
                 <div className="menu m2">
                     <div className="logo">
                         <div className="logo-img">
-                        <a href="#">AM</a>
+                        <a href="#" onClick={(e)=> handleClick( e, home)}>AM</a>
                         </div>
                         <div className="menu-items-cont">
                         <div className="menu-items">
