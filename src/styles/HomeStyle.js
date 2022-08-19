@@ -352,7 +352,6 @@ export const HomeStyle = styled.div`
             
             background:transparent ;
             transition:all ease-in-out 0.2s ;
-            background-position: center -55px;
             &:hover{
                     transition:all ease-in-out 0.2s ;
                   
@@ -379,7 +378,7 @@ export const HomeStyle = styled.div`
                 height: 100%;
                 position: absolute;
                 transition:all ease-in-out 0.5s ;
-                background:url("https://drive.google.com/uc?export=view&id=12Yamq5pbCUebieXA26bjJEOva0lAgl9K");
+                background:url("https://drive.google.com/uc?export=view&id=1G0EhyaIfz4V4ozPWIrqO9wkUjQpFw5qv");
                 background-repeat:no-repeat;
                 background-size:cover;
                 z-index: 1;
@@ -390,14 +389,13 @@ export const HomeStyle = styled.div`
                 height: 100%;
                 position: absolute;
                 transition:all ease-in-out 0.5s ;
-                background:url("https://drive.google.com/uc?export=view&id=1PTdZsdQTXU-NjJ1bGaD_dsk_L8jlpXrN");
+                background:url("https://drive.google.com/uc?export=view&id=1pTBORVJ9kU7Mv_1pqmqooJfhL6u4Sq3O");
                 background-repeat:no-repeat;
                 background-size:cover;
                 z-index: 0;
             }
             background:transparent ;
             transition:all ease-in-out 0.2s ;
-            background-position: center -55px;
     }
     .team2{
             position: relative;
@@ -414,7 +412,7 @@ export const HomeStyle = styled.div`
                 height: 100%;
                 position: absolute;
                 transition:all ease-in-out 0.5s ;
-                background:url("https://drive.google.com/uc?export=view&id=1Gsr5_xzhrcHAK_sQXnEFWA5e6hQx_571");
+                background:url("https://drive.google.com/uc?export=view&id=1W3DKdj8VRuQgKHUtkqdRfbfQ0nI6VOJo");
                 background-repeat:no-repeat;
                 background-size:cover;
                 z-index: 1;
@@ -425,8 +423,8 @@ export const HomeStyle = styled.div`
                 height: 100%;
                 position: absolute;
                 transition:all ease-in-out 0.5s ;
-                background:url("https://drive.google.com/uc?export=view&id=1xpQV29cHbPUXizlCpJZipiNJNHnglprG");
-                background-position: center -55px;
+                background:url("https://drive.google.com/uc?export=view&id=1G8Y-0AIPUKgJD1NjvLRev6qrs8yE4O-u");
+                
                 background-repeat:no-repeat;
                 background-size:cover;
                 z-index: 0;
@@ -450,8 +448,8 @@ export const HomeStyle = styled.div`
                 height: 100%;
                 position: absolute;
                 transition:all ease-in-out 0.5s ;
-                background:url("https://drive.google.com/uc?export=view&id=1YucZfOJcbs84Qqb5F2L2qbY9EJ9-o_yF");
-                background-position: center -55px;
+                background:url("https://drive.google.com/uc?export=view&id=1DckWBiLplOnT31DVuqmdm6d_6QkK7KAE");
+       
                 background-repeat:no-repeat;
                 background-size:cover;
                 z-index: 1;
@@ -462,15 +460,15 @@ export const HomeStyle = styled.div`
                 height: 100%;
                 position: absolute;
                 transition:all ease-in-out 0.5s ;
-                background:url("https://drive.google.com/uc?export=view&id=11gTrVeZbqhNAMQ3kpgynotqd_BJgm6hI");
-                background-position: center -55px;
+                background:url("https://drive.google.com/uc?export=view&id=1-yw7tW88wzIdSFTLNWxwru-L4U_vqD_S");
+         
                 background-repeat:no-repeat;
                 background-size:cover;
                 z-index: 0;
             }
             background:transparent ;
             transition:all ease-in-out 0.2s ;
-            background-position: center -55px;
+ 
     }
     .team-title {
         margin: 20px 0;
@@ -673,6 +671,7 @@ export const PortadaBg = styled.div`
             color: #fff;
             font-size: 5em;
             text-transform:uppercase ;
+            font-family:"console" ;
         }
 `;
 export const Footer = styled.div`
@@ -796,9 +795,9 @@ export const CustomContainer2 = styled.div`
 export const ImgAlbum = styled.div`
 
     
-    width: ${props => props.w <= 720 ? "50%":"100%"};
+    width: ${props => props.w <= 720 ? "100%":"100%"};
     display: flex;
-    justify-content: ${props => props.w <= 720 ? "space-around":"center"};
+   // justify-content: ${props => props.w <= 720 ? "space-around":"center"};
     padding: 0 16.5px;
     box-sizing:border-box;
 

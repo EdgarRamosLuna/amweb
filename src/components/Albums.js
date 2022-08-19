@@ -4,16 +4,16 @@ import { useLocation } from "react-router-dom";
 import axios from 'axios';
 import { BtnBack, ContentS, ImgAlbum, ItemContainer, PortadaBg } from '../styles/HomeStyle';
 //import ImageRenderer from './helpers/ImageRenderer';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { LazyLoadImage, trackWindowScroll  } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { TaskContext } from './context/TaskContext';
-export default function Albums(){
+function Albums(){
     const params = useParams();
     const location = useLocation();
     const hash  = location.state;
     const idcont = hash.id;
     const navigate = useNavigate();
-    console.log(location);
+ //   console.log(location);
     const [datacat, setDatacat] = useState([]);
     const [datapho, setDatapho] = useState([]);
     const [datapor, setDatapor] = useState([]);
@@ -97,11 +97,13 @@ export default function Albums(){
         img2.src = photos.img;
         const nw = img2.naturalWidth;
         return(
-                <ImgAlbum w={nw} h={100}>
+                <ImgAlbum>
                     <LazyLoadImage
                     effect="blur"
-                    src={photos.img} />
-                   
+                    src={photos.img}
+                    className="test"
+                    />
+                    
                 </ImgAlbum>
                 /*<ImageRenderer
                     key={photos.idimg}
@@ -130,3 +132,4 @@ export default function Albums(){
     )
     
 }
+export default (Albums);

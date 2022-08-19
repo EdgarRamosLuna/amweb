@@ -12,7 +12,7 @@ export function TaskContextProvider(props){
   const [dataCats, setDataCats] = useState([]);
   const [portada, setPortada] = useState(0);
   const [ntfyStatus, setNtfyStatus] = useState(0);
-  const [isLocal, setIsLocal] = useState(false);
+  const [isLocal, setIsLocal] = useState(true);
   const [categoria, setCategoria] = useState('');
   const location = useLocation();
   const handleModalContainerClick = (e) => e.stopPropagation();

@@ -56,10 +56,19 @@ export default function AddContent(props){
         if (navigator.userAgent.includes("Chrome")) {
             setIsBrowser('Chrome');
         }
+        const imgDB = new Image();
+
+        imgDB.src = img;
         if(img.length > 0){
             setImgCont(prevImages => ([...prevImages, { 'idimg': uniqid(), 'img': img, 'idcont': '', 'portada': 0, 'tumbnail':`${isLocal ? img:tumb}`}]));
         }
+        /*imgDB.addEventListener("load", () => {
+            console.log(imgDB.naturalWidth);
         
+            if(img.length > 0){
+                setImgCont(prevImages => ([...prevImages, { 'idimg': uniqid(), 'img': img, 'idcont': '', 'portada': 0, 'tumbnail':`${isLocal ? img:tumb}`, w:imgDB.naturalWidth, h:imgDB.naturalHeight}]));
+            }
+        }); */
        /* for (let h = 0; h < arrayImg.length; h++) {
             arrayImgC.push(<div className="img-album"><div className="select-bg"><i class="fa-solid fa-circle-check"></i></div> <img src={arrayImg[h].img} alt="" /></div>);
             setImgCont(...imgCont,arrayImgC);

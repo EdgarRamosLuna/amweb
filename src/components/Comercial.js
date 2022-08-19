@@ -16,12 +16,13 @@ export default function Comercial(){
     const navigate = useNavigate();
     const hash  = location.state;
     const catId = hash.id;
-    const nameService = location.pathname.toLowerCase();
+    const nameService = hash.name;
     console.log(location);
     useEffect(() => {
         axios.post('https://amfotografiatest.herokuapp.com/api/category/getcatbyser', {service: catId}).then(res =>{
             const categoryData = res.data;
-            setDatacat(res.data)
+            setDatacat(res.data);
+            console.log(res.data);
             axios.post('https://amfotografiatest.herokuapp.com/api/service/getserdata', {idser: catId}).then(res =>{
               //  const categoryData = res.data;
                 setDatser(res.data[0].bgimage);
@@ -63,7 +64,7 @@ export default function Comercial(){
     });
     
     
-    const title = nameService.replaceAll("servicio", "").replaceAll("/", "");
+    const title = nameService;
     const {HeaderFront} = useContext(TaskContext);
     return(
 

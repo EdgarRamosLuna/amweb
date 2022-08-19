@@ -28,6 +28,7 @@ export default function DrivePicker(props) {
         }
         
         docsD = data.docs;
+        console.log(docsD);
         for (let i = 0; i < docsD.length; i++) {
           const docs = docsD[i];
           const imgUrl = `https://drive.google.com/uc?export=view&id=${docs.id}`;

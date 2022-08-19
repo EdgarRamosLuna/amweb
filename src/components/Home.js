@@ -108,7 +108,7 @@ export default function Home(){
                                         <div>
                                            { 
                                            
-                                           <Link to={{pathname: `servicio/${service.name.toLowerCase()}`,}} state={{id: service.idser}} className="services-item-img">
+                                           <Link to={{pathname: `servicio/${service.name.toLowerCase()}`,}} state={{id: service.idser, name:service.name}} className="services-item-img">
                                             <CustomContainer className="item" bgI={service.bgimage}>
                                                 <div className="services-item-title">
                                                     <h3>{service.name}</h3>
@@ -204,6 +204,15 @@ export default function Home(){
                                         <div className="slider-item">
                                             <img src="https://drive.google.com/uc?export=view&id=1dYFDKIIlSA0hkeIhgIj5BbSwkO7UbSvn" alt="" />
                                         </div>
+                                        <div className="slider-item">
+                                            <img src="https://drive.google.com/uc?export=view&id=1NZdOncwPYTrCJWG29N0iQa5cZ8PhDMuU" alt="" />
+                                        </div>
+                                        <div className="slider-item">
+                                            <img src="https://drive.google.com/uc?export=view&id=1hYE5qWLzl7_JSH0bpBLpTmWpoW_t-mMe" alt="" />
+                                        </div>
+                                        <div className="slider-item">
+                                            <img src="https://drive.google.com/uc?export=view&id=1rl9cLdanuvUkhe5K0CuAVwdFgL8_dAjG" alt="" />
+                                        </div>
                                     
                         </OwlCarousel>  
                     </div>
@@ -215,13 +224,13 @@ export default function Home(){
             <Footer>
                 <div className="social-bar">
                     <div className="social-item">
-                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/amfotoparras/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
                     </div>
                     <div className="social-item">
-                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://www.facebook.com/amfotografiaparras" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
                     </div>
                     <div className="social-item">
-                        <a href="#"><i class="fa-solid fa-envelope"></i></a>
+                        <a href="mailto:soyadan@amfotografia.mx" ><i class="fa-solid fa-envelope"></i></a>
                     </div>
                 </div>
             </Footer>
