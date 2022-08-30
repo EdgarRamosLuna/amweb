@@ -15,16 +15,16 @@ export default function Category(){
     const [datapor, setDatapor] = useState([]);
     const navigate = useNavigate();
     const nameService = location.pathname.toLowerCase();
-    const noId = (id) =>{
+   /* const noId = (id) =>{
         if(id === '' || id.length == 0){
             window.location.href = "/";
             return false;
         }
     }
-    noId(catId);
+    noId(catId);*/
     useEffect(() => {
         axios.post('https://amfotografiatest.herokuapp.com/api/content/getcontbycat', {idcat:catId}).then(res =>{
-            noId(res.data);
+           // noId(res.data);
             let categoryDataMain = res.data;
             console.log(categoryDataMain);
             axios.post('https://amfotografiatest.herokuapp.com/api/category/getportadabycat', {idcat:catId}).then(res =>{

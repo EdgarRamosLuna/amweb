@@ -17,12 +17,11 @@ export default function Comercial(){
     const hash  = location.state;
     const catId = hash.id;
     const nameService = hash.name;
-    console.log(location);
+    console.log(nameService);
     useEffect(() => {
         axios.post('https://amfotografiatest.herokuapp.com/api/category/getcatbyser', {service: catId}).then(res =>{
             const categoryData = res.data;
-            setDatacat(res.data);
-            console.log(res.data);
+            setDatacat(res.data)
             axios.post('https://amfotografiatest.herokuapp.com/api/service/getserdata', {idser: catId}).then(res =>{
               //  const categoryData = res.data;
                 setDatser(res.data[0].bgimage);
@@ -49,7 +48,7 @@ export default function Comercial(){
         return(
                 <div key={category.idcat} className="item-container">
                     
-                    <Link to={{pathname: `${nameService}/${category.name}`}}  state={{id: category.idcat}}>
+                    <Link to={{pathname: `${category.name}`}}  state={{id: category.idcat, portada:category.bgimage}}>
                         <CustomContainer2 className="item" bgI={category.bgimage} >
                             <div className="bg">
                                 <div className="label">
@@ -64,7 +63,7 @@ export default function Comercial(){
     });
     
     
-    const title = nameService;
+    const title = nameService.replaceAll("servicio", "").replaceAll("/", "");
     const {HeaderFront} = useContext(TaskContext);
     return(
 

@@ -12,25 +12,30 @@ function Albums(){
     const location = useLocation();
     const hash  = location.state;
     const idcont = hash.id;
+    const portadaD = hash.portada;
     const navigate = useNavigate();
- //   console.log(location);
+   
     const [datacat, setDatacat] = useState([]);
     const [datapho, setDatapho] = useState([]);
     const [datapor, setDatapor] = useState([]);
     
     
-   /* const noId = (id) =>{
+    const noId = (id) =>{
         if(id === '' || id.length == 0){
             window.location.href = "/comercial";
             return false;
         }
     }
-    noId(name);*/
+    noId(idcont);
+    console.log(idcont);
     useEffect(() => {
         axios.post('https://amfotografiatest.herokuapp.com/api/photos/getdatabyid', {idcont:idcont}).then(res =>{
             //noId(res.data);
+        //    console.log(res.data)
             let categoryDataMain = res.data;
-            
+            if(res.data == ""){
+                setDatapho(portadaD);
+            }
            
             for (let i = 0; i < categoryDataMain.length; i++) {
             /*    const img = new Image();
@@ -41,6 +46,7 @@ function Albums(){
                 });
                 img.src = categoryDataMain[i].img;*/
                 const portada = categoryDataMain[i].portada;
+                console.log(portada);
                 if(portada == 1){
                     setDatapor(categoryDataMain[i].img);
                 }
